@@ -23,7 +23,6 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initLayout()
-        initViewModel()
     }
 
     override fun initLayout() {
@@ -50,9 +49,4 @@ class MainActivity : BaseActivity() {
                 }
         }
     }
-
-    override fun initViewModel() {
-
-    }
-
 }
