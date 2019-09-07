@@ -1,7 +1,7 @@
 package com.hour24.hobby.network
 
 import com.hour24.hobby.BuildConfig
-import com.hour24.hobby.const.APIHost
+import com.hour24.hobby.const.APIConst
 import com.hour24.hobby.network.service.IMindSwService
 import com.hour24.hobby.network.service.ISeoulService
 import okhttp3.OkHttpClient
@@ -16,17 +16,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitService {
 
     // 서울시 공공데이터
-    val seoulService: ISeoulService by lazy {
-        createJSONService(ISeoulService::class.java, APIHost.seoul)
+    val seoul: ISeoulService by lazy {
+        createJSONService(ISeoulService::class.java, APIConst.Host.seoul)
     }
 
     // mindSw
-    val mindSwService: IMindSwService by lazy {
-        createJSONService(IMindSwService::class.java, APIHost.mindsw)
+    val mindSw: IMindSwService by lazy {
+        createJSONService(IMindSwService::class.java, APIConst.Host.mindsw)
     }
 
     /**
-     * JSON 서비스 생성
+     * JSON 서비스
      */
     private fun <T> createJSONService(classes: Class<T>, url: String): T {
 
