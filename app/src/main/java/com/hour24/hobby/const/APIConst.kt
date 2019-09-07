@@ -11,4 +11,7 @@ object APIConst {
         const val seoul = "4b46474e4e6a736a36334a41667145"
     }
 
+    object Code {
+        const val success = "INFO-000"
+    }
 }

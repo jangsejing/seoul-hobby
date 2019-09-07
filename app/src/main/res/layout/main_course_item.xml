@@ -8,22 +8,19 @@
 
         <variable
             name="viewModel"
-            type="com.hour24.hobby.view.main.MainViewModel" />
+            type="com.hour24.hobby.viewmodel.CourseItemViewModel" />
 
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_main"
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello World!"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            bind:addAllItem="@{viewModel.getList()}"
-            tools:listitem="@layout/main_course_item" />
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.model.name}" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

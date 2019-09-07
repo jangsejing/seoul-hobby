@@ -8,12 +8,12 @@ import timber.log.Timber
 
 abstract class BaseActivity : AppCompatActivity() {
 
+    abstract fun initLayout()
     abstract fun initViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initTimber()
-        initViewModel()
     }
 
     /**

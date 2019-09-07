@@ -33,7 +33,7 @@ object RetrofitService {
         // 로깅
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level =
-            if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
+            if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BASIC else HttpLoggingInterceptor.Level.NONE
 
         val okHttpClient = OkHttpClient().newBuilder()
         okHttpClient.addInterceptor(httpLoggingInterceptor)

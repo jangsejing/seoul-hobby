@@ -40,7 +40,7 @@ data class OfflineCourse(
     val result: Result,
 
     @SerializedName("row")
-    val row: ArrayList<OfflineItemModel> = ArrayList()
+    val row: List<OfflineItemModel> = ArrayList()
 )
 
 data class Result(
