@@ -78,7 +78,7 @@ data class OfflineItemModel(
     val target: String,
 
     @SerializedName("CAPACITY")
-    val capacity: String,
+    val capacity: Int,
 
     @SerializedName("COURSE_APPLY_URL")
     val applyUrl: String
