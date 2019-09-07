@@ -1,34 +1,102 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
+
     compileSdkVersion 28
+
     defaultConfig {
         applicationId "com.hour24.hobby"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    dataBinding {
+        enabled = true
+    }
+
+    dexOptions {
+        jumboMode true
+        javaMaxHeapSize "Xg"
+    }
+
     buildTypes {
+
+        debug {
+
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            def appName = 'seoul_hobby'
+            def buildType = buildType.name // debug, release
+            def date = new Date().format('yyMMddHHmm')
+            def apkName = appName + '_' + buildType + '_' + date + '.apk'
+
+            // apk 추출
+            outputFileName = apkName
+        }
+    }
 }
 
+// test
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
+
+// general
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+
+// android x
+// https://developer.android.com/jetpack/androidx/migrate
+dependencies {
+    implementation 'androidx.core:core-ktx:1.1.0'
+    implementation 'androidx.multidex:multidex:2.0.1' // multi dex
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3' // constraint
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+    def lifeCycle = '2.1.0'
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifeCycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifeCycle"
+    implementation "androidx.lifecycle:lifecycle-runtime:$lifeCycle"
+}
+
+// squareup
+dependencies {
+    def retrofit = '2.4.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+    implementation "com.squareup.retrofit2:converter-scalars:$retrofit"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+}
+
+// reactivex
+dependencies {
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.8'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+}
+
+// glide
+dependencies {
+    def glide = '4.9.0'
+    implementation "com.github.bumptech.glide:glide:$glide"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glide"
 }
