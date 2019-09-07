@@ -26,7 +26,6 @@ android {
     }
 
     buildTypes {
-
         debug {
 
         }
@@ -67,8 +66,8 @@ dependencies {
 // https://developer.android.com/jetpack/androidx/migrate
 dependencies {
     implementation 'androidx.core:core-ktx:1.1.0'
-    implementation 'androidx.multidex:multidex:2.0.1' // multi dex
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3' // constraint
+    implementation 'androidx.multidex:multidex:2.0.1'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 

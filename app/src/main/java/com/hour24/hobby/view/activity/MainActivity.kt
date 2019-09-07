@@ -1,7 +1,8 @@
-package com.hour24.hobby
+package com.hour24.hobby.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.hour24.hobby.R
 
 class MainActivity : AppCompatActivity() {
 
