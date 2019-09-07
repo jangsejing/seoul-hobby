@@ -2,6 +2,7 @@ package com.hour24.hobby.extentions
 
 import android.text.TextUtils
 import android.widget.TextView
+import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hour24.hobby.utils.DateUtils
@@ -37,4 +38,19 @@ fun TextView.convertDateFormat(
     tryCatch {
         this.text = DateUtils.convertDateFormat(date, originalFormat, convertFormat)
     }
+}
+
+/**
+ * html format
+ *
+ * @param html
+ */
+@BindingAdapter("htmlFormat")
+fun TextView.setHtmlFormat(html: String) {
+    tryCatch {
+        this.text = HtmlCompat.fromHtml(html, 0)
+        return
+    }
+
+    this.text = html
 }

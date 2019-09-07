@@ -19,178 +19,250 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
-        android:clickable="true"
         android:orientation="vertical">
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/notosans_regular"
-            android:text="@{viewModel.model.type}"
-            android:textColor="#000000"
-            android:visibility="gone"
-            tools:text="오프라인" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:fontFamily="@font/notosans_medium"
-            android:maxLines="2"
-            android:text="@{viewModel.name}"
-            android:textColor="#000000"
-            android:textSize="18dp"
-            tools:text="로마의인, 오비디우스의 발자취를 따라 로마의인, 오비디우스의 발자취를 따라 로마의인, 오비디우스의 발자취를 따라 로마의인, 오비디우스의 발자취를 따라" />
-
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:orientation="vertical"
+            android:padding="10dp">
 
-            <!-- 수강인원 -->
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="@{viewModel.model.capacity == 0 ? View.GONE : View.VISIBLE}">
+                android:fontFamily="@font/notosans_regular"
+                android:text="@{viewModel.model.type}"
+                android:textColor="#000000"
+                tools:text="오프라인" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/notosans_medium"
+                android:maxLines="2"
+                android:textColor="#000000"
+                android:textSize="18dp"
+                bind:htmlFormat="@{viewModel.name}"
+                tools:text="로마의인, 오비디우스의 발자취를 따라 로마의인, 오비디우스의 발자취를 따라 로마의인, 오비디우스의 발자취를 따라 로마의인, 오비디우스의 발자취를 따라" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal">
+
+                <!-- 수강인원 -->
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosans_medium"
-                    android:text="수강인원"
-                    android:textColor="#000000" />
+                    android:orientation="horizontal"
+                    android:visibility="@{viewModel.model.capacity == 0 ? View.GONE : View.VISIBLE}">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosans_medium"
+                        android:text="수강인원"
+                        android:textColor="#000000" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:fontFamily="@font/notosans_regular"
+                        android:text="@{@string/main_course_capacity(viewModel.model.capacity)}"
+                        android:textColor="#000000"
+                        tools:text="1명" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <!-- 수강대상 -->
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosans_regular"
-                    android:text="@{@string/main_course_capacity(viewModel.model.capacity)}"
-                    android:textColor="#000000"
-                    tools:text="1명" />
+                    android:layout_marginLeft="3dp"
+                    android:orientation="horizontal"
+                    android:visibility='@{"".equals(viewModel.model.target.trim()) ? View.GONE : View.VISIBLE}'>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosans_medium"
+                        android:text="수강대상"
+                        android:textColor="#000000" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:fontFamily="@font/notosans_regular"
+                        android:text="@{viewModel.model.target}"
+                        android:textColor="#000000"
+                        tools:text="초등학생" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <!-- 수강대상 -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_margin="10dp"
+                android:background="#000000"
+                android:visibility="gone" />
+
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility='@{"".equals(viewModel.model.target.trim()) ? View.GONE : View.VISIBLE}'>
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shp_r15"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
+                <!-- 신청기간 -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosans_medium"
-                    android:text="수강대상"
-                    android:textColor="#000000" />
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="10dp">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosans_demi_light"
+                        android:text="신청기간"
+                        android:textColor="#000000" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/notosans_light"
+                            android:textColor="#000000"
+                            bind:convertFormat="@{DateUtils.YYYY_MM_DD}"
+                            bind:date="@{viewModel.model.applyStartDate}"
+                            bind:originalFormat="@{DateUtils.YYYYMMDD}"
+                            tools:text="2019.10.10" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="3dp"
+                            android:fontFamily="@font/notosans_light"
+                            android:text="~"
+                            android:textColor="#000000"
+                            tools:text="~" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/notosans_light"
+                            android:textColor="#000000"
+                            bind:convertFormat="@{DateUtils.YYYY_MM_DD}"
+                            bind:date="@{viewModel.model.applyEndDate}"
+                            bind:originalFormat="@{DateUtils.YYYYMMDD}"
+                            tools:text="2019.12.12" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="0.5dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#ffffff" />
+
+                <!-- 수강기간 -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosans_regular"
-                    android:text="@{viewModel.model.target}"
-                    android:textColor="#000000"
-                    tools:text="초등학생" />
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosans_demi_light"
+                        android:text="수강기간"
+                        android:textColor="#000000" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/notosans_light"
+                            android:textColor="#000000"
+                            bind:convertFormat="@{DateUtils.YYYY_MM_DD}"
+                            bind:date="@{viewModel.model.courseStartDate}"
+                            bind:originalFormat="@{DateUtils.YYYYMMDD}"
+                            tools:text="2019.10.10" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="3dp"
+                            android:layout_marginRight="3dp"
+                            android:fontFamily="@font/notosans_light"
+                            android:text="~"
+                            android:textColor="#000000"
+                            tools:text="~" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/notosans_light"
+                            android:textColor="#000000"
+                            bind:convertFormat="@{DateUtils.YYYY_MM_DD}"
+                            bind:date="@{viewModel.model.courseEndDate}"
+                            bind:originalFormat="@{DateUtils.YYYYMMDD}"
+                            tools:text="2019.12.12" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
-        </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_margin="10dp"
-            android:background="#000000"
-            android:visibility="gone" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#d8d8d8" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <!-- 신청기간 -->
+            <!-- 소셜 -->
             <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosans_demi_light"
-                    android:text="신청기간"
-                    android:textColor="#000000" />
+                    app:srcCompat="@drawable/ic_like_off" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosans_light"
-                    android:textColor="#000000"
-                    bind:convertFormat="@{DateUtils.YYYY_MM_DD}"
-                    bind:date="@{viewModel.model.applyStartDate}"
-                    bind:originalFormat="@{DateUtils.YYYYMMDD}"
-                    tools:text="2019.10.10" />
+                    app:srcCompat="@drawable/ic_comment" />
 
-                <androidx.appcompat.widget.AppCompatTextView
+                <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosans_light"
-                    android:text="~"
-                    android:textColor="#000000"
-                    tools:text="~" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosans_light"
-                    android:textColor="#000000"
-                    bind:convertFormat="@{DateUtils.YYYY_MM_DD}"
-                    bind:date="@{viewModel.model.applyEndDate}"
-                    bind:originalFormat="@{DateUtils.YYYYMMDD}"
-                    tools:text="2019.12.12" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <!-- 수강기간 -->
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosans_demi_light"
-                    android:text="수강기간"
-                    android:textColor="#000000" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosans_light"
-                    android:textColor="#000000"
-                    bind:convertFormat="@{DateUtils.YYYY_MM_DD}"
-                    bind:date="@{viewModel.model.courseStartDate}"
-                    bind:originalFormat="@{DateUtils.YYYYMMDD}"
-                    tools:text="2019.10.10" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosans_light"
-                    android:text="~"
-                    android:textColor="#000000" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/notosans_light"
-                    android:textColor="#000000"
-                    bind:convertFormat="@{DateUtils.YYYY_MM_DD}"
-                    bind:date="@{viewModel.model.courseEndDate}"
-                    bind:originalFormat="@{DateUtils.YYYYMMDD}"
-                    tools:text="2019.12.12" />
-
+                    app:srcCompat="@drawable/ic_bookmark" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <include layout="@layout/main_course_division" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
