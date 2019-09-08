@@ -15,16 +15,28 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffffff">
+        android:background="#ffffff"
+        android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:text="Hello World!"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             bind:addAllItem="@{viewModel.getList()}"
             tools:listitem="@layout/main_course_item" />
+
+        <!-- tabbar -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                layout="@layout/main_tabbar"
+                app:viewModel="@{viewModel}" />
+        </FrameLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

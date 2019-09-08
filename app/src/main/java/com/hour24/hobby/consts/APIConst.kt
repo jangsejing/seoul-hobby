@@ -14,4 +14,9 @@ object APIConst {
     object Code {
         const val success = "INFO-000"
     }
+
+    object Default {
+        const val startIndex = 1
+        const val endIndex = 100
+    }
 }

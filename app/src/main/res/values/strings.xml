@@ -10,4 +10,6 @@
     <string name="main_course_date_apply_title">지원기간</string>
     <string name="main_course_date_course_title">수강기간</string>
 
+    <string name="search">검색</string>
+    <string name="search_text_hint">강의명</string>
 </resources>

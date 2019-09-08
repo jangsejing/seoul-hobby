@@ -66,14 +66,20 @@ dependencies {
     implementation 'com.pixplicity.htmlcompat:library:1.1.1' // html
 }
 
+// android
+dependencies {
+
+}
+
 // android x
 // https://developer.android.com/jetpack/androidx/migrate
 dependencies {
     implementation 'androidx.core:core-ktx:1.1.0'
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
 
     def lifeCycle = '2.1.0'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifeCycle"
