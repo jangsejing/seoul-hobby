@@ -1,11 +1,8 @@
 package com.hour24.hobby.view.main
 
 import android.annotation.SuppressLint
-import android.app.Application
 import androidx.databinding.ObservableField
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import com.hour24.hobby.const.APIConst
+import com.hour24.hobby.consts.APIConst
 import com.hour24.hobby.model.OfflineItemModel
 import com.hour24.hobby.network.RetrofitService
 import com.hour24.hobby.provider.ContextProvider
@@ -31,7 +28,7 @@ class MainViewModel(val contextProvider: ContextProvider) {
     fun getOfflineCourseList(
         startIndex: Int = 1,
         endIndex: Int = 100,
-        date: String = DateUtils.convertDateFormat(DateUtils.YYYYMM),
+        date: String = DateUtils.convertDateFormat(DateUtils.YYYYMM), // 필수
         search: String = " "
     ) {
         RetrofitService.seoul

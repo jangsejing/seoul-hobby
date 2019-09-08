@@ -1,4 +1,4 @@
-package com.hour24.hobby.const
+package com.hour24.hobby.consts
 
 object APIConst {
 

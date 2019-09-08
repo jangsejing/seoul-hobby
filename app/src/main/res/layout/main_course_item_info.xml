@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="type"
+            type="com.hour24.hobby.consts.CourseConst.CourseInfo" />
+
+        <variable
+            name="viewModel"
+            type="com.hour24.hobby.viewmodel.CourseItemViewModel" />
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/notosans_medium"
+            android:text="@{viewModel.getCourseInfoTitle(type)}"
+            android:textColor="#000000"
+            tools:text="수강인원" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:fontFamily="@font/notosans_regular"
+            android:text="@{viewModel.getCourseInfo(type)}"
+            android:textColor="#000000"
+            tools:text="1명" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

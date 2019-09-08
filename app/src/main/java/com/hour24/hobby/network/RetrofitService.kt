@@ -1,7 +1,7 @@
 package com.hour24.hobby.network
 
 import com.hour24.hobby.BuildConfig
-import com.hour24.hobby.const.APIConst
+import com.hour24.hobby.consts.APIConst
 import com.hour24.hobby.network.service.IMindSwService
 import com.hour24.hobby.network.service.ISeoulService
 import okhttp3.OkHttpClient

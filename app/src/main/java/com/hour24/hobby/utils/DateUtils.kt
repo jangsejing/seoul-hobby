@@ -38,7 +38,7 @@ object DateUtils {
         date: String,
         originalFormat: String,
         convertFormat: String
-    ): String? {
+    ): String {
         tryCatch {
 
             if (date.isEmpty()) {

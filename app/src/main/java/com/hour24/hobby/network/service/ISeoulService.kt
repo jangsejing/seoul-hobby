@@ -1,6 +1,6 @@
 package com.hour24.hobby.network.service
 
-import com.hour24.hobby.const.APIConst
+import com.hour24.hobby.consts.APIConst
 import com.hour24.hobby.model.OfflineCourseModel
 import io.reactivex.Flowable
 import retrofit2.http.GET
