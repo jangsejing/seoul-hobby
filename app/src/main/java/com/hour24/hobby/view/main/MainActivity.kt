@@ -3,10 +3,10 @@ package com.hour24.hobby.view.main
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentManager
 import com.hour24.hobby.R
 import com.hour24.hobby.databinding.MainActivityBinding
 import com.hour24.hobby.databinding.MainCourseItemBinding
-import com.hour24.hobby.generated.callback.OnClickListener
 import com.hour24.hobby.model.OfflineItemModel
 import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.view.activity.BaseActivity
@@ -14,7 +14,6 @@ import com.hour24.hobby.viewmodel.CourseItemViewModel
 import com.hour24.tb.adapter.GenericRecyclerViewAdapter
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_tabbar.*
-import kotlinx.android.synthetic.main.search_sheet.*
 
 class MainActivity : BaseActivity(), View.OnClickListener {
 
@@ -43,7 +42,9 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         mBinding.run {
 
             // viewModel
-            viewModel = mViewModel
+            viewModel = mViewModel.apply {
+                setFragmentManager(supportFragmentManager)
+            }
 
             // adapter
             rvMain.adapter =
@@ -67,4 +68,5 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             it.setOnClickListener(this)
         }
     }
+
 }

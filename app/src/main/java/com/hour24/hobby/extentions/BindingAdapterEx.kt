@@ -8,6 +8,13 @@ import com.hour24.hobby.utils.DateUtils
 import com.hour24.hobby.utils.tryCatch
 import com.hour24.tb.adapter.GenericRecyclerViewAdapter
 
+@BindingAdapter("addAllItem")
+fun RecyclerView.addAllItem(
+    list: List<Any>?
+) {
+    addAllItem(list, false)
+}
+
 @BindingAdapter("addAllItem", "isClear")
 fun RecyclerView.addAllItem(
     list: List<Any>?,

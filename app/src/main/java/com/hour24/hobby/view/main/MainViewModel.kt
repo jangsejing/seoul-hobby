@@ -12,13 +12,14 @@ import com.hour24.hobby.network.RetrofitService
 import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.utils.DateUtils
 import com.hour24.hobby.view.search.SearchSheet
+import com.hour24.hobby.viewmodel.BaseViewModel
 import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
 @SuppressLint("CheckResult")
-class MainViewModel(val contextProvider: ContextProvider) {
+class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewModel() {
 
     private var mIsClear: ObservableBoolean = ObservableBoolean()
 
@@ -98,10 +99,12 @@ class MainViewModel(val contextProvider: ContextProvider) {
                         }
                     })
 
-                    show(
-                        contextProvider.getSupportFragmentManager(),
-                        SearchSheet::class.java.name
-                    )
+                    super.getFragmentManager()?.let {
+                        show(
+                            it,
+                            SearchSheet::class.java.name
+                        )
+                    }
                 }
             }
 

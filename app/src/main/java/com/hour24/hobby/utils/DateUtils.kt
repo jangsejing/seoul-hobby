@@ -6,6 +6,7 @@ import java.util.*
 
 object DateUtils {
 
+    const val YYYY = "yyyy"
     const val YYYYMM = "yyyyMM"
     const val YYYYMMDDHHMM = "yyyyMMddHHmm"
     const val YYYYMMDD = "yyyyMMdd"

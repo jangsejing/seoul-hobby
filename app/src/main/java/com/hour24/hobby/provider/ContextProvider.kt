@@ -1,16 +1,15 @@
 package com.hour24.hobby.provider
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
 import androidx.core.content.ContextCompat
 
-class ContextProvider(private val context: AppCompatActivity) {
+class ContextProvider(private val mContext: Context) {
 
-    fun getContext() = context
+    fun getContext() = mContext
 
-    fun getString(resId: Int) = context.getString(resId)
+    fun getString(resId: Int) = mContext.getString(resId)
 
-    fun getColor(resId: Int) = ContextCompat.getColor(context, resId)
+    fun getColor(resId: Int) = ContextCompat.getColor(mContext, resId)
 
-    fun getSupportFragmentManager() = context.supportFragmentManager
 
 }
