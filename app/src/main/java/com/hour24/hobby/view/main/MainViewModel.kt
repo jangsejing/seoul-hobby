@@ -2,6 +2,7 @@ package com.hour24.hobby.view.main
 
 import android.annotation.SuppressLint
 import android.view.View
+import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import com.hour24.hobby.BuildConfig
 import com.hour24.hobby.R
@@ -19,24 +20,29 @@ import timber.log.Timber
 @SuppressLint("CheckResult")
 class MainViewModel(val contextProvider: ContextProvider) {
 
-    init {
-        if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
-        getOfflineCourseList()
+    private var mIsClear: ObservableBoolean = ObservableBoolean()
+
+    private val mOfflineCourseList: ObservableField<List<OfflineItemModel>> by lazy {
+        ObservableField<List<OfflineItemModel>>()
     }
 
-    private val offlineCourseList: ObservableField<List<OfflineItemModel>> by lazy {
-        ObservableField<List<OfflineItemModel>>()
+    init {
+        getOfflineCourseList()
     }
 
     /**
      * 오프라인 강좌
      */
     fun getOfflineCourseList(
+        isClear: Boolean = false,
         startIndex: Int = APIConst.Default.startIndex,
         endIndex: Int = APIConst.Default.endIndex,
         date: String = DateUtils.convertDateFormat(DateUtils.YYYYMM), // 필수
         search: String = " "
     ) {
+
+        // 초기화 여부
+        this.mIsClear.set(isClear)
 
         val text = if (search.isEmpty()) " " else search
 
@@ -55,33 +61,35 @@ class MainViewModel(val contextProvider: ContextProvider) {
                 }
             }
             .subscribe({
-                offlineCourseList.set(it)
+                mOfflineCourseList.set(it)
             }) {
                 it.printStackTrace()
             }
     }
 
     // 리스트
-    fun getList() = offlineCourseList
+    fun getList() = mOfflineCourseList
+
+    // 리스트 초기화 여부
+    fun isClear() = mIsClear
 
     fun onClick(v: View) {
 
         when (v.id) {
 
-            R.id.iv_home -> {
-
-            }
-
             // 검색
             R.id.iv_search -> {
 
+                // 검색시트
                 SearchSheet().run {
 
                     setOnSearchSheetListener(object : SearchSheet.OnSearchSheetListener {
+
                         override fun onDismiss(text: String) {
                             Timber.d(text)
                             val date = DateUtils.convertDateFormat(DateUtils.YYYYMM)
                             getOfflineCourseList(
+                                true,
                                 APIConst.Default.startIndex,
                                 APIConst.Default.endIndex,
                                 date,

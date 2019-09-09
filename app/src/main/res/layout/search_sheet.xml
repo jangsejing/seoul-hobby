@@ -22,7 +22,6 @@
             android:layout_margin="10dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
-            android:onClick="@{(v) -> viewModel.onClick(v)}"
             android:src="@mipmap/ic_launcher" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -67,8 +66,9 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="10dp">
+            android:layout_height="52dp"
+            android:layout_margin="12dp"
+            android:background="@drawable/shp_r12_4693ff">
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_submit"
@@ -76,9 +76,11 @@
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
+                android:fontFamily="@font/notosans_bold"
                 android:gravity="center"
-                android:onClick="@{(v) -> viewModel.onClick(v)}"
-                android:text="@string/search" />
+                android:text="@string/search"
+                android:textColor="#ffffff"
+                android:textSize="16dp" />
         </RelativeLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

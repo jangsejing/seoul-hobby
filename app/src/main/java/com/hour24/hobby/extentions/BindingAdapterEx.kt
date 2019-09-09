@@ -1,6 +1,5 @@
 package com.hour24.hobby.extentions
 
-import android.text.TextUtils
 import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
@@ -8,15 +7,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.hour24.hobby.utils.DateUtils
 import com.hour24.hobby.utils.tryCatch
 import com.hour24.tb.adapter.GenericRecyclerViewAdapter
-import java.text.SimpleDateFormat
-import java.util.*
 
-@BindingAdapter("addAllItem")
+@BindingAdapter("addAllItem", "isClear")
 fun RecyclerView.addAllItem(
-    list: List<Any>?
+    list: List<Any>?,
+    isClear: Boolean
 ) {
     tryCatch {
         (this.adapter as? GenericRecyclerViewAdapter<Any, *>)?.run {
+
+            if (isClear) {
+                this.clear()
+            }
+
             this.addAllItem(list)
         }
     }

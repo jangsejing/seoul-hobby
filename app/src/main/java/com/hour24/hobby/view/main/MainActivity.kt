@@ -1,17 +1,22 @@
 package com.hour24.hobby.view.main
 
 import android.os.Bundle
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.hour24.hobby.R
 import com.hour24.hobby.databinding.MainActivityBinding
 import com.hour24.hobby.databinding.MainCourseItemBinding
+import com.hour24.hobby.generated.callback.OnClickListener
 import com.hour24.hobby.model.OfflineItemModel
 import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.view.activity.BaseActivity
 import com.hour24.hobby.viewmodel.CourseItemViewModel
 import com.hour24.tb.adapter.GenericRecyclerViewAdapter
+import kotlinx.android.synthetic.main.main_activity.*
+import kotlinx.android.synthetic.main.main_tabbar.*
+import kotlinx.android.synthetic.main.search_sheet.*
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), View.OnClickListener {
 
     private val mBinding: MainActivityBinding by lazy {
         DataBindingUtil.setContentView<MainActivityBinding>(this, R.layout.main_activity)
@@ -23,6 +28,14 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initLayout()
+    }
+
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.iv_home -> {
+                rv_main.smoothScrollToPosition(0)
+            }
+        }
     }
 
     override fun initLayout() {
@@ -47,6 +60,11 @@ class MainActivity : BaseActivity() {
                         dataBinding.viewModel = viewModel
                     }
                 }
+        }
+
+        val views = arrayOf(iv_home)
+        views.forEach {
+            it.setOnClickListener(this)
         }
     }
 }

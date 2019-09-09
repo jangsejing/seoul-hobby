@@ -10,8 +10,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.hour24.hobby.databinding.SearchSheetBinding
 import  androidx.databinding.Observable
 import com.hour24.hobby.R
+import kotlinx.android.synthetic.main.search_sheet.*
 
-class SearchSheet : BottomSheetDialogFragment() {
+class SearchSheet : BottomSheetDialogFragment(), View.OnClickListener {
 
     interface OnSearchSheetListener {
         fun onDismiss(text: String)
@@ -40,19 +41,32 @@ class SearchSheet : BottomSheetDialogFragment() {
     }
 
     private fun initLayout() {
-        mBinding.run {
 
+        val views = arrayOf(tv_submit, iv_close)
+        views.forEach {
+            (it as View).setOnClickListener(this)
+        }
+
+        mBinding.run {
             viewModel = mViewModel.apply {
 
-                text.addOnPropertyChangedCallback(object : OnPropertyChangedCallback() {
+            }
+        }
+    }
 
-                    override fun onPropertyChanged(
-                        sender: Observable,
-                        propertyId: Int
-                    ) {
-                        mListener.onDismiss(text.get().toString())
-                    }
-                })
+    override fun onClick(v: View) {
+
+        when (v.id) {
+
+            R.id.iv_close -> {
+                dismiss()
+            }
+
+            // 검색
+            R.id.tv_submit -> {
+                val text = et_search.text.toString()
+                mListener.onDismiss(text)
+                dismiss()
             }
         }
     }

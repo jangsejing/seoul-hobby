@@ -17,6 +17,6 @@ object APIConst {
 
     object Default {
         const val startIndex = 1
-        const val endIndex = 100
+        const val endIndex = 50
     }
 }
