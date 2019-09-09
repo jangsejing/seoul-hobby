@@ -54,10 +54,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
                     android:ellipsize="end"
-                    android:fontFamily="@font/notosans_regular"
+                    android:fontFamily="@font/notosans_medium"
                     android:maxLines="2"
                     android:textColor="#000000"
-                    android:textSize="15dp"
+                    android:textSize="17dp"
                     bind:htmlFormat="@{viewModel.name}"
                     tools:text="로마의인, 오비디우스의 발자취를 따라 로마의인, 오비디우스의 발자취를 따라 로마의인, 오비디우스의 발자취를 따라 로마의인, 오비디우스의 발자취를 따라" />
 
