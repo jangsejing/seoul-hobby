@@ -8,16 +8,19 @@ import androidx.databinding.DataBindingUtil.inflate
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.hour24.hobby.R
 import com.hour24.hobby.databinding.SearchSheetBinding
+import com.hour24.hobby.view.main.MainViewModel
 import kotlinx.android.synthetic.main.search_sheet.*
 
 class SearchSheet : BottomSheetDialogFragment(), View.OnClickListener {
 
     interface OnSearchSheetListener {
-        fun onDismiss(text: String, date: String)
+        fun onDismiss(text: String, year: Int, month: Int)
     }
 
     private lateinit var mBinding: SearchSheetBinding
     private lateinit var mListener: OnSearchSheetListener
+    private lateinit var mMainViewModel: MainViewModel
+
     private val mViewModel = SearchViewModel()
 
     override fun onCreateView(
@@ -34,7 +37,8 @@ class SearchSheet : BottomSheetDialogFragment(), View.OnClickListener {
         initLayout()
     }
 
-    fun setOnSearchSheetListener(listener: OnSearchSheetListener) {
+    fun setOnSearchSheetListener(viewModel: MainViewModel, listener: OnSearchSheetListener) {
+        mMainViewModel = viewModel
         mListener = listener
     }
 
@@ -46,6 +50,12 @@ class SearchSheet : BottomSheetDialogFragment(), View.OnClickListener {
         }
 
         mBinding.run {
+
+            mViewModel.apply {
+                setText(mMainViewModel.getText())
+                setYear(mMainViewModel.getYear())
+                setMonth(mMainViewModel.getMonth())
+            }
             viewModel = mViewModel
         }
     }
@@ -60,14 +70,8 @@ class SearchSheet : BottomSheetDialogFragment(), View.OnClickListener {
 
             // 검색
             R.id.tv_submit -> {
-
                 // 강의명
-                val text = et_search.text.toString()
-
-                // 신청시작일
-                val date = String.format("%d%02d", np_year.value, np_month.value)
-
-                mListener.onDismiss(text, date)
+                mListener.onDismiss(et_search.text.toString(), np_year.value, np_month.value)
                 dismiss()
             }
         }

@@ -23,9 +23,10 @@ class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewMod
 
     private var mIsClear: ObservableBoolean = ObservableBoolean()
 
-    private val mOfflineCourseList: ObservableField<List<OfflineItemModel>> by lazy {
-        ObservableField<List<OfflineItemModel>>()
-    }
+    private val mOfflineCourseList = ObservableField<List<OfflineItemModel>>()
+    private var mText = ""
+    private var mYear = DateUtils.convertDateFormat(DateUtils.YYYY).toInt()
+    private var mMonth = DateUtils.convertDateFormat(DateUtils.MM).toInt()
 
     init {
         getOfflineCourseList()
@@ -38,11 +39,15 @@ class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewMod
         isClear: Boolean = false,
         startIndex: Int = APIConst.Default.startIndex,
         endIndex: Int = APIConst.Default.endIndex,
-        date: String = DateUtils.convertDateFormat(DateUtils.YYYYMM), // 필수
+        year: Int = DateUtils.convertDateFormat(DateUtils.YYYY).toInt(),
+        month: Int = DateUtils.convertDateFormat(DateUtils.MM).toInt(),
         search: String = " "
     ) {
 
         val text = if (search.isEmpty()) " " else search
+        val date = String.format("%d%02d", year, month)
+
+        Timber.d("$text / $date")
 
         RetrofitService.seoul
             .reqOfflineCourse(startIndex, endIndex, text, date)
@@ -61,7 +66,12 @@ class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewMod
             .subscribe({
                 // 초기화 여부
                 this.mIsClear.set(isClear)
+
                 mOfflineCourseList.set(it)
+                mText = text
+                mYear = year
+                mMonth = month
+
             }) {
                 it.printStackTrace()
             }
@@ -69,6 +79,15 @@ class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewMod
 
     // 리스트
     fun getList() = mOfflineCourseList
+
+    // 리스트
+    fun getText() = mText
+
+    // 리스트
+    fun getYear() = mYear
+
+    // 리스트
+    fun getMonth() = mMonth
 
     // 리스트 초기화 여부
     fun isClear() = mIsClear
@@ -83,19 +102,20 @@ class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewMod
                 // 검색시트
                 SearchSheet().run {
 
-                    setOnSearchSheetListener(object : SearchSheet.OnSearchSheetListener {
+                    setOnSearchSheetListener(this@MainViewModel,
+                        object : SearchSheet.OnSearchSheetListener {
 
-                        override fun onDismiss(text: String, date: String) {
-                            Timber.d(text)
-                            getOfflineCourseList(
-                                true,
-                                APIConst.Default.startIndex,
-                                APIConst.Default.endIndex,
-                                date,
-                                text
-                            )
-                        }
-                    })
+                            override fun onDismiss(text: String, year: Int, month: Int) {
+                                getOfflineCourseList(
+                                    true,
+                                    APIConst.Default.startIndex,
+                                    APIConst.Default.endIndex,
+                                    year,
+                                    month,
+                                    text
+                                )
+                            }
+                        })
 
                     super.getFragmentManager()?.let {
                         show(

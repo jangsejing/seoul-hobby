@@ -33,15 +33,17 @@ fun RecyclerView.addAllItem(
     }
 }
 
-@BindingAdapter("addAllItem")
+@BindingAdapter("addAllItem", "default")
 fun NumberPicker.addAllItem(
-    list: List<Int>?
+    list: List<Int>?,
+    default: Int
 ) {
     tryCatch {
         list?.let {
             this.minValue = it[0]
             this.maxValue = it[it.size - 1]
         }
+        this.value = default
     }
 }
 
