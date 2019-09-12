@@ -4,29 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil.inflate
-import androidx.databinding.Observable.OnPropertyChangedCallback
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.hour24.hobby.databinding.SearchSheetBinding
-import  androidx.databinding.Observable
-import androidx.recyclerview.widget.RecyclerView
 import com.hour24.hobby.R
-import com.hour24.hobby.consts.SearchConst
-import com.hour24.hobby.databinding.MainCourseItemBinding
-import com.hour24.hobby.databinding.SearchDateBinding
-import com.hour24.hobby.model.OfflineItemModel
-import com.hour24.hobby.provider.ContextProvider
-import com.hour24.hobby.utils.DateUtils
-import com.hour24.hobby.utils.tryCatch
-import com.hour24.hobby.viewmodel.CourseItemViewModel
-import com.hour24.tb.adapter.GenericRecyclerViewAdapter
+import com.hour24.hobby.databinding.SearchSheetBinding
 import kotlinx.android.synthetic.main.search_sheet.*
 
 class SearchSheet : BottomSheetDialogFragment(), View.OnClickListener {
 
     interface OnSearchSheetListener {
-        fun onDismiss(text: String)
+        fun onDismiss(text: String, date: String)
     }
 
     private lateinit var mBinding: SearchSheetBinding
@@ -59,40 +46,9 @@ class SearchSheet : BottomSheetDialogFragment(), View.OnClickListener {
         }
 
         mBinding.run {
-
             viewModel = mViewModel
-
-            setListAdapter(SearchConst.DateType.YEAR, rvYear)
-            setListAdapter(SearchConst.DateType.MONTH, rvMonth)
-
-            mViewModel.setYearLst()
-            mViewModel.setMonthList()
-
         }
     }
-
-    /**
-     * 0 : year
-     * 1 : month
-     */
-    private fun setListAdapter(type: SearchConst.DateType, view: RecyclerView) {
-
-        // adapter
-        view.adapter =
-            object :
-                GenericRecyclerViewAdapter<Int, SearchDateBinding>(R.layout.search_date) {
-                override fun onBindData(
-                    position: Int,
-                    date: Int,
-                    dataBinding: SearchDateBinding
-                ) {
-                    val viewModel = SearchViewModel()
-                    viewModel.setDate(date)
-                    dataBinding.viewModel = viewModel
-                }
-            }
-    }
-
 
     override fun onClick(v: View) {
 
@@ -104,8 +60,14 @@ class SearchSheet : BottomSheetDialogFragment(), View.OnClickListener {
 
             // 검색
             R.id.tv_submit -> {
+
+                // 강의명
                 val text = et_search.text.toString()
-                mListener.onDismiss(text)
+
+                // 신청시작일
+                val date = String.format("%d%02d", np_year.value, np_month.value)
+
+                mListener.onDismiss(text, date)
                 dismiss()
             }
         }

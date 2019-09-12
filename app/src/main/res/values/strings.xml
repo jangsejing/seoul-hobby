@@ -11,5 +11,7 @@
     <string name="main_course_date_course_title">수강기간</string>
 
     <string name="search">검색</string>
+    <string name="search_option_title">강의명</string>
+    <string name="search_option_date">신청시작일</string>
     <string name="search_text_hint">강의명</string>
 </resources>

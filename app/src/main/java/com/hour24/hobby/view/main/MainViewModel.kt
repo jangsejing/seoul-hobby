@@ -55,11 +55,12 @@ class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewMod
                 Flowable.just(it.offlineCourse)
             }
             .flatMap {
-                if (it.result.code != APIConst.Code.success) {
-                    Flowable.error(Exception("result code : ${it.result.code}"))
-                } else {
-                    Flowable.just(it.row)
-                }
+                Flowable.just(it.row)
+//                if (it.result.code != APIConst.Code.success) {
+//                    Flowable.error(Exception("result code : ${it.result.code}"))
+//                } else {
+//
+//                }
             }
             .subscribe({
                 mOfflineCourseList.set(it)
@@ -86,9 +87,8 @@ class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewMod
 
                     setOnSearchSheetListener(object : SearchSheet.OnSearchSheetListener {
 
-                        override fun onDismiss(text: String) {
+                        override fun onDismiss(text: String, date: String) {
                             Timber.d(text)
-                            val date = DateUtils.convertDateFormat(DateUtils.YYYYMM)
                             getOfflineCourseList(
                                 true,
                                 APIConst.Default.startIndex,

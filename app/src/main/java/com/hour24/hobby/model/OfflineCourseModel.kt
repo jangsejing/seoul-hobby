@@ -29,7 +29,7 @@ import com.google.gson.annotations.SerializedName
 
 data class OfflineCourseModel (
     @SerializedName("OfflineCourse")
-    val offlineCourse: OfflineCourse
+    val offlineCourse: OfflineCourse?
 )
 
 data class OfflineCourse(

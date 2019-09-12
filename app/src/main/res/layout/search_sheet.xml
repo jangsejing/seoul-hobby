@@ -32,43 +32,44 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <com.google.android.material.textfield.TextInputLayout
+            <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:counterEnabled="true"
-                app:counterMaxLength="30">
+                android:text="@string/search_option_title" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_search"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/search_text_hint"
-                    android:inputType="text"
-                    android:maxLength="30" />
-            </com.google.android.material.textfield.TextInputLayout>
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_search"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:singleLine="true" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/search_option_date" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_year"
+                <NumberPicker
+                    android:id="@+id/np_year"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    bind:addAllItem="@{viewModel.getYearList()}"
-                    tools:listitem="@layout/search_date" />
+                    android:layout_height="wrap_content"
+                    android:calendarViewShown="false"
+                    bind:addAllItem="@{viewModel.getYearList()}" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_month"
+                <NumberPicker
+                    android:id="@+id/np_month"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    bind:addAllItem="@{viewModel.getMonthList()}"
-                    tools:listitem="@layout/search_date" />
+                    android:layout_height="wrap_content"
+                    android:calendarViewShown="false"
+                    bind:addAllItem="@{viewModel.getMonthList()}" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
 

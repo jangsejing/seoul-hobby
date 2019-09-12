@@ -5,23 +5,15 @@ import androidx.databinding.ObservableField
 import com.hour24.hobby.utils.DateUtils
 
 @SuppressLint("CheckResult")
-class SearchViewModel() {
+class SearchViewModel {
 
-    private val mYearList: ObservableField<List<Int>> by lazy {
-        ObservableField<List<Int>>()
+    private val mYearList = ObservableField<List<Int>>()
+    private val mMonthList = ObservableField<List<Int>>()
+
+    init {
+        setYearLst()
+        setMonthList()
     }
-
-    private val mMonthList: ObservableField<List<Int>> by lazy {
-        ObservableField<List<Int>>()
-    }
-
-    private var mDate = 0
-
-    fun setDate(date: Int) {
-        this.mDate = date
-    }
-
-    fun getDate() = mDate.toString()
 
     fun getYearList() = mYearList
 
@@ -30,7 +22,7 @@ class SearchViewModel() {
     /**
      * 현재년도 구하기 (+5년)
      */
-    fun setYearLst() {
+    private fun setYearLst() {
         val year = DateUtils.convertDateFormat(DateUtils.YYYY).toInt()
         val yearList = ArrayList<Int>()
         for (i in 0..5) {
@@ -42,7 +34,7 @@ class SearchViewModel() {
     /**
      * 일 구하기
      */
-    fun setMonthList() {
+    private fun setMonthList() {
         val monthList = ArrayList<Int>()
         for (i in 1..12) {
             monthList.add(i)

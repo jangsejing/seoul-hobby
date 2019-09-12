@@ -1,5 +1,6 @@
 package com.hour24.hobby.extentions
 
+import android.widget.NumberPicker
 import android.widget.TextView
 import androidx.core.text.HtmlCompat
 import androidx.databinding.BindingAdapter
@@ -31,6 +32,19 @@ fun RecyclerView.addAllItem(
         }
     }
 }
+
+@BindingAdapter("addAllItem")
+fun NumberPicker.addAllItem(
+    list: List<Int>?
+) {
+    tryCatch {
+        list?.let {
+            this.minValue = it[0]
+            this.maxValue = it[it.size - 1]
+        }
+    }
+}
+
 
 /**
  * 다른 형태의 포맷으로 날짜 타입 변경
