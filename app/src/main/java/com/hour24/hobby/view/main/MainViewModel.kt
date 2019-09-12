@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.view.View
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
-import com.hour24.hobby.BuildConfig
 import com.hour24.hobby.R
 import com.hour24.hobby.consts.APIConst
 import com.hour24.hobby.model.OfflineItemModel
@@ -17,6 +16,7 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
+import com.hour24.hobby.extentions.toast
 
 @SuppressLint("CheckResult")
 class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewModel() {
@@ -42,9 +42,6 @@ class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewMod
         search: String = " "
     ) {
 
-        // 초기화 여부
-        this.mIsClear.set(isClear)
-
         val text = if (search.isEmpty()) " " else search
 
         RetrofitService.seoul
@@ -52,17 +49,18 @@ class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewMod
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .flatMap {
-                Flowable.just(it.offlineCourse)
-            }
-            .flatMap {
-                Flowable.just(it.row)
-//                if (it.result.code != APIConst.Code.success) {
-//                    Flowable.error(Exception("result code : ${it.result.code}"))
-//                } else {
-//
-//                }
+                if (it.offlineCourse != null) {
+                    Flowable.just(it.offlineCourse.row)
+                } else {
+                    mContextProvider.getContext().toast(R.string.search_empty)
+                    Flowable.error {
+                        Throwable()
+                    }
+                }
             }
             .subscribe({
+                // 초기화 여부
+                this.mIsClear.set(isClear)
                 mOfflineCourseList.set(it)
             }) {
                 it.printStackTrace()
