@@ -1,14 +1,17 @@
-package com.hour24.hobby.viewmodel
+package com.hour24.hobby.view.main
 
+import android.content.Intent
+import android.view.View
 import com.hour24.hobby.R
 import com.hour24.hobby.consts.CourseConst
 import com.hour24.hobby.model.OfflineItemModel
 import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.utils.DateUtils
 import com.hour24.hobby.utils.tryCatch
+import com.hour24.hobby.view.detail.DetailActivity
 import java.util.*
 
-class CourseItemViewModel(private val contextProvider: ContextProvider) {
+class MainItemViewModel(private val contextProvider: ContextProvider) {
 
     private lateinit var model: OfflineItemModel
 
@@ -102,5 +105,15 @@ class CourseItemViewModel(private val contextProvider: ContextProvider) {
         }
 
         return ""
+    }
+
+    fun onClick(v: View, model: OfflineItemModel) {
+        when (v.id) {
+            R.id.ll_main -> {
+                val intent = Intent(v.context, DetailActivity::class.java)
+                intent.putExtra(OfflineItemModel::class.java.name, model)
+                v.context.startActivity(intent)
+            }
+        }
     }
 }

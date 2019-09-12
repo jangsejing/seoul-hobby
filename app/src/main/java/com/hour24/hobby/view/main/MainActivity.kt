@@ -3,14 +3,12 @@ package com.hour24.hobby.view.main
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.FragmentManager
 import com.hour24.hobby.R
 import com.hour24.hobby.databinding.MainActivityBinding
 import com.hour24.hobby.databinding.MainCourseItemBinding
 import com.hour24.hobby.model.OfflineItemModel
 import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.view.activity.BaseActivity
-import com.hour24.hobby.viewmodel.CourseItemViewModel
 import com.hour24.tb.adapter.GenericRecyclerViewAdapter
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.android.synthetic.main.main_tabbar.*
@@ -56,7 +54,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                         dataBinding: MainCourseItemBinding
                     ) {
                         val viewModel =
-                            CourseItemViewModel(ContextProvider(this@MainActivity))
+                            MainItemViewModel(ContextProvider(this@MainActivity))
                         viewModel.setModel(model)
                         dataBinding.viewModel = viewModel
                     }

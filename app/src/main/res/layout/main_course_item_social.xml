@@ -8,7 +8,7 @@
 
         <variable
             name="viewModel"
-            type="com.hour24.hobby.viewmodel.CourseItemViewModel" />
+            type="com.hour24.hobby.view.main.MainItemViewModel" />
 
     </data>
 

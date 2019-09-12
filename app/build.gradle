@@ -80,6 +80,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.paging:paging-runtime:2.1.0'
 
     def lifeCycle = '2.1.0'
     implementation "androidx.lifecycle:lifecycle-extensions:$lifeCycle"

@@ -1,6 +1,7 @@
 package com.hour24.hobby.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 
 //{
@@ -27,10 +28,10 @@ import com.google.gson.annotations.SerializedName
 //}
 //}
 
-data class OfflineCourseModel (
+data class OfflineCourseModel(
     @SerializedName("OfflineCourse")
     val offlineCourse: OfflineCourse?
-)
+) : Serializable
 
 data class OfflineCourse(
     @SerializedName("list_total_count")
@@ -41,7 +42,7 @@ data class OfflineCourse(
 
     @SerializedName("row")
     val row: List<OfflineItemModel> = ArrayList()
-)
+) : Serializable
 
 data class Result(
     @SerializedName("CODE")
@@ -49,7 +50,7 @@ data class Result(
 
     @SerializedName("MESSAGE")
     val message: String
-)
+) : Serializable
 
 data class OfflineItemModel(
 
@@ -83,4 +84,4 @@ data class OfflineItemModel(
     @SerializedName("COURSE_APPLY_URL")
     val applyUrl: String
 
-)
+) : Serializable
