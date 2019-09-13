@@ -10,6 +10,7 @@
     <string name="main_course_date_apply_title">지원기간</string>
     <string name="main_course_date_course_title">수강기간</string>
     <string name="main_search_tag">전체검색</string>
+    <string name="main_empty_url">지원가능한 URL이 없습니다</string>
 
     <string name="search">검색</string>
     <string name="search_empty">검색된 강의정보가 없습니다</string>

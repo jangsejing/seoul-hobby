@@ -1,17 +1,20 @@
 package com.hour24.hobby.view.main
 
-import android.content.Intent
 import android.view.View
+import androidx.browser.customtabs.CustomTabsIntent
 import com.hour24.hobby.R
 import com.hour24.hobby.consts.CourseConst
 import com.hour24.hobby.model.OfflineItemModel
 import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.utils.DateUtils
 import com.hour24.hobby.utils.tryCatch
-import com.hour24.hobby.view.detail.DetailActivity
 import java.util.*
+import android.net.Uri
+import com.hour24.hobby.extentions.toast
+import timber.log.Timber
 
-class MainItemViewModel(private val contextProvider: ContextProvider) {
+
+class MainItemViewModel(private val mContextProvider: ContextProvider) {
 
     private lateinit var model: OfflineItemModel
 
@@ -23,7 +26,7 @@ class MainItemViewModel(private val contextProvider: ContextProvider) {
 
     fun getName(): String {
         val name = model.name.trim()
-        return if (name.isEmpty()) contextProvider.getString(R.string.main_course_name_empty) else name
+        return if (name.isEmpty()) mContextProvider.getString(R.string.main_course_name_empty) else name
     }
 
     /**
@@ -31,9 +34,9 @@ class MainItemViewModel(private val contextProvider: ContextProvider) {
      */
     fun getCourseInfoTitle(type: CourseConst.CourseInfo): String {
         return if (type == CourseConst.CourseInfo.CAPACITY) {
-            contextProvider.getString(R.string.main_course_info_capacity_title)
+            mContextProvider.getString(R.string.main_course_info_capacity_title)
         } else {
-            contextProvider.getString(R.string.main_course_info_target_title)
+            mContextProvider.getString(R.string.main_course_info_target_title)
         }
     }
 
@@ -45,7 +48,7 @@ class MainItemViewModel(private val contextProvider: ContextProvider) {
             return if (type == CourseConst.CourseInfo.CAPACITY) {
                 String.format(
                     Locale.KOREA,
-                    contextProvider.getString(R.string.main_course_info_capacity),
+                    mContextProvider.getString(R.string.main_course_info_capacity),
                     model.capacity
                 )
             } else {
@@ -60,9 +63,9 @@ class MainItemViewModel(private val contextProvider: ContextProvider) {
      */
     fun getDateRangeTitle(type: CourseConst.DateRange): String {
         return if (type == CourseConst.DateRange.APPLY) {
-            contextProvider.getString(R.string.main_course_date_apply_title)
+            mContextProvider.getString(R.string.main_course_date_apply_title)
         } else {
-            contextProvider.getString(R.string.main_course_date_course_title)
+            mContextProvider.getString(R.string.main_course_date_course_title)
         }
     }
 
@@ -98,7 +101,7 @@ class MainItemViewModel(private val contextProvider: ContextProvider) {
 
             return String.format(
                 Locale.KOREA,
-                contextProvider.getString(R.string.main_course_date),
+                mContextProvider.getString(R.string.main_course_date),
                 start,
                 end
             )
@@ -110,9 +113,24 @@ class MainItemViewModel(private val contextProvider: ContextProvider) {
     fun onClick(v: View, model: OfflineItemModel) {
         when (v.id) {
             R.id.ll_main -> {
-                val intent = Intent(v.context, DetailActivity::class.java)
-                intent.putExtra(OfflineItemModel::class.java.name, model)
-                v.context.startActivity(intent)
+                tryCatch {
+                    Timber.d("url : ${model.applyUrl}")
+
+                    val url = model.applyUrl
+
+                    if (url.isNotEmpty()) {
+                        val builder = CustomTabsIntent.Builder().apply {
+                            setToolbarColor(mContextProvider.getColor(R.color.colorPrimary))
+                            setShowTitle(true)
+                            addDefaultShareMenuItem()
+                        }
+
+                        val intent = builder.build()
+                        intent.launchUrl(v.context, Uri.parse(model.applyUrl))
+                    } else {
+                        mContextProvider.getContext().toast(R.string.main_empty_url)
+                    }
+                }
             }
         }
     }
