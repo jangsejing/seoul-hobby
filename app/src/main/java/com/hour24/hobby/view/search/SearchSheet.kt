@@ -52,9 +52,9 @@ class SearchSheet : BottomSheetDialogFragment(), View.OnClickListener {
         mBinding.run {
 
             mViewModel.apply {
-                setText(mMainViewModel.getText())
-                setYear(mMainViewModel.getYear())
-                setMonth(mMainViewModel.getMonth())
+                setText(mMainViewModel.getText().get()!!.trim())
+                setYear(mMainViewModel.getYear().get())
+                setMonth(mMainViewModel.getMonth().get())
             }
             viewModel = mViewModel
         }

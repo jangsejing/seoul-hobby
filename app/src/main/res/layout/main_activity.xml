@@ -6,6 +6,8 @@
 
     <data>
 
+        <import type="com.hour24.hobby.consts.CourseConst.SearchTag" />
+
         <variable
             name="viewModel"
             type="com.hour24.hobby.view.main.MainViewModel" />
@@ -45,11 +47,29 @@
                 android:orientation="vertical"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:orientation="horizontal">
+
+                    <include
+                        layout="@layout/main_search_tag"
+                        app:type="@{SearchTag.TEXT}"
+                        app:viewModel="@{viewModel}" />
+
+                    <include
+                        layout="@layout/main_search_tag"
+                        app:type="@{SearchTag.DATE}"
+                        app:viewModel="@{viewModel}" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <include layout="@layout/main_search_tag_division" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_main"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
+                    android:layout_height="match_parent"
                     android:text="Hello World!"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     bind:addAllItem="@{viewModel.getList()}"

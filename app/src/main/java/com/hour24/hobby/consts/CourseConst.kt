@@ -11,4 +11,9 @@ object CourseConst {
     enum class CourseInfo {
         CAPACITY, TARGET
     }
+
+    // 수강 정보
+    enum class SearchTag {
+        TEXT, DATE
+    }
 }

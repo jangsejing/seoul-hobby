@@ -4,8 +4,10 @@ import android.annotation.SuppressLint
 import android.view.View
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
+import androidx.databinding.ObservableInt
 import com.hour24.hobby.R
 import com.hour24.hobby.consts.APIConst
+import com.hour24.hobby.consts.CourseConst
 import com.hour24.hobby.model.OfflineItemModel
 import com.hour24.hobby.network.RetrofitService
 import com.hour24.hobby.provider.ContextProvider
@@ -24,11 +26,17 @@ class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewMod
     private var mIsClear: ObservableBoolean = ObservableBoolean()
 
     private val mOfflineCourseList = ObservableField<List<OfflineItemModel>>()
-    private var mText = ""
-    private var mYear = DateUtils.convertDateFormat(DateUtils.YYYY).toInt()
-    private var mMonth = DateUtils.convertDateFormat(DateUtils.MM).toInt()
+    private var mText = ObservableField<String>()
+    private var mDate = ObservableField<String>() // 노출용
+    private var mYear = ObservableInt()
+    private var mMonth = ObservableInt()
 
     init {
+
+        mText.set("")
+        mYear.set(DateUtils.convertDateFormat(DateUtils.MM).toInt())
+        mMonth.set(DateUtils.convertDateFormat(DateUtils.YYYY).toInt())
+
         getOfflineCourseList()
     }
 
@@ -68,29 +76,25 @@ class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewMod
                 this.mIsClear.set(isClear)
 
                 mOfflineCourseList.set(it)
-                mText = text
-                mYear = year
-                mMonth = month
+                mText.set(text)
+                mYear.set(year)
+                mMonth.set(month)
+
+                // 노출용
+                mDate.set(String.format("%d%02d", year, month))
 
             }) {
                 it.printStackTrace()
             }
     }
 
-    // 리스트
-    fun getList() = mOfflineCourseList
-
-    // 리스트
-    fun getText() = mText
-
-    // 리스트
-    fun getYear() = mYear
-
-    // 리스트
-    fun getMonth() = mMonth
-
-    // 리스트 초기화 여부
-    fun isClear() = mIsClear
+    fun getSearchTag(type: CourseConst.SearchTag): ObservableField<String> {
+        return if (type == CourseConst.SearchTag.TEXT) {
+            mText
+        } else {
+            mDate
+        }
+    }
 
     fun onClick(v: View) {
 
@@ -136,4 +140,18 @@ class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewMod
         }
     }
 
+    // 리스트
+    fun getList() = mOfflineCourseList
+
+    // 리스트
+    fun getText() = mText
+
+    // 리스트
+    fun getYear() = mYear
+
+    // 리스트
+    fun getMonth() = mMonth
+
+    // 리스트 초기화 여부
+    fun isClear() = mIsClear
 }
