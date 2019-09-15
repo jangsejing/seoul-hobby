@@ -1,14 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/detail_activity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.hour24.hobby.consts.CourseConst.DateRange" />
+
+        <import type="com.hour24.hobby.consts.CourseConst.CourseInfo" />
+
+        <variable
+            name="viewModel"
+            type="com.hour24.hobby.viewmodel.CourseViewModel" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:showIn="@layout/detail_activity">
 
-</androidx.core.widget.NestedScrollView>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:orientation="vertical">
+
+                <!-- 수강인원 -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="@{viewModel.model.capacity == 0 ? View.GONE : View.VISIBLE}">
+
+                    <include
+                        layout="@layout/layout_course_info"
+                        app:type="@{CourseInfo.CAPACITY}"
+                        app:viewModel="@{viewModel}" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <!-- 수강대상 -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal"
+                    android:visibility='@{"".equals(viewModel.model.target.trim()) ? View.GONE : View.VISIBLE}'>
+
+                    <include
+                        layout="@layout/layout_course_info"
+                        app:type="@{CourseInfo.TARGET}"
+                        app:viewModel="@{viewModel}" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <!-- 신청 URL -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:orientation="horizontal"
+                    android:visibility='@{"".equals(viewModel.model.applyUrl.trim()) ? View.GONE : View.VISIBLE}'>
+
+                    <include
+                        layout="@layout/layout_course_info"
+                        app:type="@{CourseInfo.URL}"
+                        app:viewModel="@{viewModel}" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/shp_r16_f7f9fa"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <!-- 신청기간 -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <include
+                        layout="@layout/layout_course_date"
+                        app:type="@{DateRange.APPLY}"
+                        app:viewModel="@{viewModel}" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="#ffffff" />
+
+                <!-- 수강기간 -->
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <include
+                        layout="@layout/layout_course_date"
+                        app:type="@{DateRange.COURSE}"
+                        app:viewModel="@{viewModel}" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.core.widget.NestedScrollView>
+</layout>

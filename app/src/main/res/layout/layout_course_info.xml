@@ -14,19 +14,22 @@
 
         <variable
             name="viewModel"
-            type="com.hour24.hobby.view.main.MainItemViewModel" />
+            type="com.hour24.hobby.viewmodel.CourseViewModel" />
 
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/ll_course_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
         android:gravity="center_vertical"
+        android:onClick="@{(v) -> viewModel.onClick(v, viewModel.model, type)}"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="3dp"
-            android:layout_height="3dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="3dp"
             android:src="@drawable/shp_oval_243b52" />
 
@@ -43,7 +46,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
+            android:autoLink="web"
             android:fontFamily="@font/notosans_regular"
+            android:linksClickable="false"
             android:text="@{viewModel.getCourseInfo(type)}"
             android:textColor="#243b52"
             tools:text="1명" />

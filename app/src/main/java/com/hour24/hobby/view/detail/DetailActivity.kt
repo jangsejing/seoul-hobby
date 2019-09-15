@@ -10,6 +10,7 @@ import com.hour24.hobby.model.OfflineItemModel
 import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.utils.tryCatch
 import com.hour24.hobby.view.activity.BaseActivity
+import com.hour24.hobby.viewmodel.CourseViewModel
 
 
 class DetailActivity : BaseActivity(), View.OnClickListener {
@@ -18,7 +19,7 @@ class DetailActivity : BaseActivity(), View.OnClickListener {
         DataBindingUtil.setContentView<DetailActivityBinding>(this, R.layout.detail_activity)
     }
 
-    private val mViewModel: DetailViewModel = DetailViewModel(ContextProvider(this))
+    private val mViewModel = CourseViewModel(ContextProvider(this))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

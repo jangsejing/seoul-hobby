@@ -9,7 +9,7 @@ object CourseConst {
 
     // 수강 정보
     enum class CourseInfo {
-        CAPACITY, TARGET
+        CAPACITY, TARGET, URL
     }
 
     // 수강 정보

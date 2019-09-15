@@ -14,7 +14,7 @@
 
         <variable
             name="viewModel"
-            type="com.hour24.hobby.view.main.MainItemViewModel" />
+            type="com.hour24.hobby.viewmodel.CourseViewModel" />
 
     </data>
 
@@ -77,7 +77,7 @@
                         android:visibility="@{viewModel.model.capacity == 0 ? View.GONE : View.VISIBLE}">
 
                         <include
-                            layout="@layout/main_course_item_info"
+                            layout="@layout/layout_course_info"
                             app:type="@{CourseInfo.CAPACITY}"
                             app:viewModel="@{viewModel}" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -90,7 +90,7 @@
                         android:visibility='@{"".equals(viewModel.model.target.trim()) ? View.GONE : View.VISIBLE}'>
 
                         <include
-                            layout="@layout/main_course_item_info"
+                            layout="@layout/layout_course_info"
                             app:type="@{CourseInfo.TARGET}"
                             app:viewModel="@{viewModel}" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
@@ -116,7 +116,7 @@
                     android:orientation="vertical">
 
                     <include
-                        layout="@layout/main_course_date"
+                        layout="@layout/layout_course_date"
                         app:type="@{DateRange.APPLY}"
                         app:viewModel="@{viewModel}" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -136,7 +136,7 @@
                     android:orientation="vertical">
 
                     <include
-                        layout="@layout/main_course_date"
+                        layout="@layout/layout_course_date"
                         app:type="@{DateRange.COURSE}"
                         app:viewModel="@{viewModel}" />
                 </androidx.appcompat.widget.LinearLayoutCompat>

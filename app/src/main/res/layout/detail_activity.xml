@@ -8,13 +8,14 @@
 
         <variable
             name="viewModel"
-            type="com.hour24.hobby.view.detail.DetailViewModel" />
+            type="com.hour24.hobby.viewmodel.CourseViewModel" />
 
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#ffffff"
         android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -33,7 +34,7 @@
                 app:expandedTitleMargin="15dp"
                 app:expandedTitleTextAppearance="@style/DetailExpandedTitleStyle"
                 app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:title="@{viewModel.model.name}">
+                app:title="@{viewModel.name}">
 
                 <View
                     android:layout_width="match_parent"
@@ -53,7 +54,9 @@
             </net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <include layout="@layout/detail_content" />
+        <include
+            layout="@layout/detail_content"
+            app:viewModel="@{viewModel}" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

@@ -5,6 +5,7 @@
     <string name="main_course_name_empty">강의명을 불러올 수 없습니다</string>
     <string name="main_course_info_capacity">%d명</string>
     <string name="main_course_info_capacity_title">수강인원</string>
+    <string name="main_course_info_url_title">수강신청</string>
     <string name="main_course_info_target_title">수강대상</string>
     <string name="main_course_date">%s ~ %s</string>
     <string name="main_course_date_apply_title">지원기간</string>
