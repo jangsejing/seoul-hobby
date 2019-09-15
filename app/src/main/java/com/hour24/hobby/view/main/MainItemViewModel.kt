@@ -1,5 +1,6 @@
 package com.hour24.hobby.view.main
 
+import android.content.Intent
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
 import com.hour24.hobby.R
@@ -11,6 +12,7 @@ import com.hour24.hobby.utils.tryCatch
 import java.util.*
 import android.net.Uri
 import com.hour24.hobby.extentions.toast
+import com.hour24.hobby.view.detail.DetailActivity
 import timber.log.Timber
 
 
@@ -116,20 +118,24 @@ class MainItemViewModel(private val mContextProvider: ContextProvider) {
                 tryCatch {
                     Timber.d("url : ${model.applyUrl}")
 
-                    val url = model.applyUrl
+                    val intent = Intent(v.context, DetailActivity::class.java)
+                    intent.putExtra(model::class.java.name, model)
+                    v.context.startActivity(intent)
 
-                    if (url.isNotEmpty()) {
-                        val builder = CustomTabsIntent.Builder().apply {
-                            setToolbarColor(mContextProvider.getColor(R.color.colorPrimary))
-                            setShowTitle(true)
-                            addDefaultShareMenuItem()
-                        }
-
-                        val intent = builder.build()
-                        intent.launchUrl(v.context, Uri.parse(model.applyUrl))
-                    } else {
-                        mContextProvider.getContext().toast(R.string.main_empty_url)
-                    }
+//                    val url = model.applyUrl
+//
+//                    if (url.isNotEmpty()) {
+//                        val builder = CustomTabsIntent.Builder().apply {
+//                            setToolbarColor(mContextProvider.getColor(R.color.colorPrimary))
+//                            setShowTitle(true)
+//                            addDefaultShareMenuItem()
+//                        }
+//
+//                        val intent = builder.build()
+//                        intent.launchUrl(v.context, Uri.parse(model.applyUrl))
+//                    } else {
+//                        mContextProvider.getContext().toast(R.string.main_empty_url)
+//                    }
                 }
             }
         }

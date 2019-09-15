@@ -82,3 +82,17 @@ fun TextView.setHtmlFormat(html: String) {
 
     this.text = html
 }
+
+/**
+ * html format
+ *
+ * @param html
+ */
+@BindingAdapter("toolbarTitle")
+fun Toolbar.setTitle(title: String) {
+    tryCatch {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            this.title = title
+        }
+    }
+}
