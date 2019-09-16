@@ -4,10 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.hour24.with_v2.database.FavoriteDao
-import com.hour24.with_v2.database.FavoriteEntity
 
-@Database(entities = [FavoriteEntity::class], version = 2)
+@Database(entities = [BookmarkEntity::class], version = 1)
 abstract class AppDatabase : RoomDatabase() {
 
     companion object {
@@ -31,8 +29,12 @@ abstract class AppDatabase : RoomDatabase() {
             return INSTANCE
         }
 
+        fun destroyInstance() {
+            INSTANCE = null
+        }
+
     }
 
-    abstract fun favoriteDao(): FavoriteDao
+    abstract fun bookmarkDao(): BookmarkDao
 
 }

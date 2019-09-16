@@ -57,6 +57,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                         val viewModel =
                             CourseViewModel(ContextProvider(this@MainActivity))
                         viewModel.setModel(model)
+
                         dataBinding.viewModel = viewModel
                     }
                 }

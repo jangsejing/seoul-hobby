@@ -4,30 +4,50 @@ import android.content.Intent
 import android.net.Uri
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
+import com.google.gson.Gson
 import com.hour24.hobby.R
 import com.hour24.hobby.consts.CourseConst
 import com.hour24.hobby.extentions.toast
 import com.hour24.hobby.model.OfflineItemModel
 import com.hour24.hobby.provider.ContextProvider
+import com.hour24.hobby.room.AppDatabase
+import com.hour24.hobby.room.BookmarkEntity
 import com.hour24.hobby.utils.DateUtils
 import com.hour24.hobby.utils.tryCatch
 import java.util.*
 import com.hour24.hobby.view.detail.DetailActivity
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 
 
 class CourseViewModel(private val mContextProvider: ContextProvider) {
 
-    private lateinit var model: OfflineItemModel
+    private lateinit var mModel: OfflineItemModel
+//    private val mBookmarkViewModel
 
-    fun setModel(model: OfflineItemModel) {
-        this.model = model
+    init {
+
     }
 
-    fun getModel() = model
+    fun setModel(model: OfflineItemModel) {
+        this.mModel = model
+        getBookmark()
+    }
+
+    fun getModel() = mModel
+
+    /**
+     * 북마크 체크
+     */
+    private fun getBookmark() {
+        tryCatch {
+
+        }
+    }
 
     fun getName(): String {
-        val name = model.name.trim()
+        val name = mModel.name.trim()
         return if (name.isEmpty()) mContextProvider.getString(R.string.main_course_name_empty) else name
     }
 
@@ -52,11 +72,11 @@ class CourseViewModel(private val mContextProvider: ContextProvider) {
                     String.format(
                         Locale.KOREA,
                         mContextProvider.getString(R.string.main_course_info_capacity),
-                        model.capacity
+                        mModel.capacity
                     )
                 }
-                CourseConst.CourseInfo.TARGET -> model.target
-                CourseConst.CourseInfo.URL -> model.applyUrl
+                CourseConst.CourseInfo.TARGET -> mModel.target
+                CourseConst.CourseInfo.URL -> mModel.applyUrl
             }
         }
 
@@ -84,11 +104,11 @@ class CourseViewModel(private val mContextProvider: ContextProvider) {
             var end: String
 
             if (type == CourseConst.DateRange.APPLY) {
-                start = model.applyStartDate
-                end = model.applyEndDate
+                start = mModel.applyStartDate
+                end = mModel.applyEndDate
             } else {
-                start = model.courseStartDate
-                end = model.courseEndDate
+                start = mModel.courseStartDate
+                end = mModel.courseEndDate
             }
 
             start = DateUtils.convertDateFormat(
@@ -114,6 +134,8 @@ class CourseViewModel(private val mContextProvider: ContextProvider) {
         return ""
     }
 
+
+
     fun onClick(v: View, model: OfflineItemModel) {
         when (v.id) {
             R.id.ll_main -> {
@@ -122,6 +144,14 @@ class CourseViewModel(private val mContextProvider: ContextProvider) {
                     intent.putExtra(model::class.java.name, model)
                     v.context.startActivity(intent)
                 }
+            }
+
+            R.id.cv_bookmark -> {
+
+            }
+
+            R.id.cv_comment -> {
+
             }
         }
     }

@@ -20,16 +20,17 @@
         android:padding="10dp">
 
         <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cv_comment"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:onClick="@{(v) -> viewModel.onClick(v, viewModel.model)}"
+            android:text="댓글" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/cv_bookmark"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
+            android:layout_height="wrap_content"
+            android:onClick="@{(v) -> viewModel.onClick(v, viewModel.model)}"
+            android:text="북마크" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

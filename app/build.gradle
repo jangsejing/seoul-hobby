@@ -38,6 +38,12 @@ android {
         }
     }
 
+    kapt {
+        arguments {
+            arg("room.schemaLocation", "$projectDir/schemas".toString())
+        }
+    }
+
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
             def appName = 'seoul_hobby'
