@@ -13,7 +13,7 @@
             type="com.hour24.hobby.consts.CourseConst.CourseInfo" />
 
         <variable
-            name="viewModel"
+            name="courseVM"
             type="com.hour24.hobby.viewmodel.CourseViewModel" />
 
     </data>
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
         android:gravity="center_vertical"
-        android:onClick="@{(v) -> viewModel.onClick(v, viewModel.model, type)}"
+        android:onClick="@{(v) -> courseVM.onClick(v, courseVM.model, type)}"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:fontFamily="@font/notosans_medium"
-            android:text="@{viewModel.getCourseInfoTitle(type)}"
+            android:text="@{courseVM.getCourseInfoTitle(type)}"
             android:textColor="#243b52"
             tools:text="수강인원" />
 
@@ -49,7 +49,7 @@
             android:autoLink="web"
             android:fontFamily="@font/notosans_regular"
             android:linksClickable="false"
-            android:text="@{viewModel.getCourseInfo(type)}"
+            android:text="@{courseVM.getCourseInfo(type)}"
             android:textColor="#243b52"
             tools:text="1명" />
     </androidx.appcompat.widget.LinearLayoutCompat>

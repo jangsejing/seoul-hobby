@@ -15,7 +15,7 @@
             type="com.hour24.hobby.consts.CourseConst.DateRange" />
 
         <variable
-            name="viewModel"
+            name="courseVM"
             type="com.hour24.hobby.viewmodel.CourseViewModel" />
 
     </data>
@@ -31,7 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/notosans_demi_light"
-            android:text="@{viewModel.getDateRangeTitle(type)}"
+            android:text="@{courseVM.getDateRangeTitle(type)}"
             android:textColor="#000000"
             tools:text="수강기간" />
 
@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/notosans_light"
-                android:text="@{viewModel.getDateRange(type)}"
+                android:text="@{courseVM.getDateRange(type)}"
                 android:textColor="#000000"
                 tools:text="2019.10.10 ~ 2019.12.10" />
         </androidx.appcompat.widget.LinearLayoutCompat>

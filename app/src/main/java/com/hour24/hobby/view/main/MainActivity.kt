@@ -9,6 +9,7 @@ import com.hour24.hobby.databinding.MainCourseItemBinding
 import com.hour24.hobby.model.OfflineItemModel
 import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.view.activity.BaseActivity
+import com.hour24.hobby.view.bookmark.BookmarkViewModel
 import com.hour24.hobby.viewmodel.CourseViewModel
 import com.hour24.tb.adapter.GenericRecyclerViewAdapter
 import kotlinx.android.synthetic.main.main_activity.*
@@ -20,8 +21,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         DataBindingUtil.setContentView<MainActivityBinding>(this, R.layout.main_activity)
     }
 
-    private val mViewModel: MainViewModel =
-        MainViewModel(ContextProvider(this))
+    private val mMainVM: MainViewModel = MainViewModel(ContextProvider(this))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,7 +41,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         mBinding.run {
 
             // viewModel
-            viewModel = mViewModel.apply {
+            mainVM = mMainVM.apply {
                 setFragmentManager(supportFragmentManager)
             }
 
@@ -54,11 +54,14 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                         model: OfflineItemModel,
                         dataBinding: MainCourseItemBinding
                     ) {
-                        val viewModel =
-                            CourseViewModel(ContextProvider(this@MainActivity))
-                        viewModel.setModel(model)
 
-                        dataBinding.viewModel = viewModel
+                        dataBinding.courseVM =
+                            CourseViewModel(ContextProvider(this@MainActivity)).apply {
+                                setModel(model)
+                            }
+                        dataBinding.bookmarkVM =
+                            BookmarkViewModel(ContextProvider(this@MainActivity))
+
                     }
                 }
         }

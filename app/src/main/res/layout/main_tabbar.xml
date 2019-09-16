@@ -7,7 +7,7 @@
     <data>
 
         <variable
-            name="viewModel"
+            name="mainVM"
             type="com.hour24.hobby.view.main.MainViewModel" />
 
     </data>
@@ -45,7 +45,7 @@
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:onClick="@{(v) -> viewModel.onClick(v)}"
+                android:onClick="@{(v) -> mainVM.onClick(v)}"
                 android:src="@mipmap/ic_launcher" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -55,7 +55,7 @@
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:onClick="@{(v) -> viewModel.onClick(v)}"
+                android:onClick="@{(v) -> mainVM.onClick(v)}"
                 android:src="@mipmap/ic_launcher" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -65,7 +65,7 @@
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:onClick="@{(v) -> viewModel.onClick(v)}"
+                android:onClick="@{(v) -> mainVM.onClick(v)}"
                 android:src="@mipmap/ic_launcher" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>

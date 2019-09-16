@@ -19,7 +19,7 @@ class DetailActivity : BaseActivity(), View.OnClickListener {
         DataBindingUtil.setContentView<DetailActivityBinding>(this, R.layout.detail_activity)
     }
 
-    private val mViewModel = CourseViewModel(ContextProvider(this))
+    private val mCourseVM = CourseViewModel(ContextProvider(this))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,15 +34,18 @@ class DetailActivity : BaseActivity(), View.OnClickListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId === android.R.id.home) {
-            finish()
+
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
 
     private fun initIntent() {
         tryCatch {
-            mViewModel.setModel(intent.getSerializableExtra(OfflineItemModel::class.java.name) as OfflineItemModel)
+            mCourseVM.setModel(intent.getSerializableExtra(OfflineItemModel::class.java.name) as OfflineItemModel)
         }
     }
 
@@ -55,7 +58,7 @@ class DetailActivity : BaseActivity(), View.OnClickListener {
                 setDisplayShowHomeEnabled(true)
             }
 
-            viewModel = mViewModel
+            courseVM = mCourseVM
         }
 
 //        val views = arrayOf(iv_home)

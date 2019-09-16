@@ -13,7 +13,7 @@
             type="com.hour24.hobby.consts.CourseConst.SearchTag" />
 
         <variable
-            name="viewModel"
+            name="mainVM"
             type="com.hour24.hobby.view.main.MainViewModel" />
 
     </data>
@@ -26,7 +26,7 @@
         android:layout_marginRight="3dp"
         android:layout_marginBottom="5dp"
         android:background="#ffffff"
-        android:visibility="@{viewModel.getSearchTag(type).trim().empty ? View.GONE : View.VISIBLE}">
+        android:visibility="@{mainVM.getSearchTag(type).trim().empty ? View.GONE : View.VISIBLE}">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
@@ -37,7 +37,7 @@
             android:paddingTop="3dp"
             android:paddingRight="8dp"
             android:paddingBottom="3dp"
-            android:text="@{viewModel.getSearchTag(type).trim()}"
+            android:text="@{mainVM.getSearchTag(type).trim()}"
             android:textColor="#ffffff"
             tools:text="자바" />
 

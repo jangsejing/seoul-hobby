@@ -6,9 +6,17 @@
 
     <data>
 
+        <import type="com.hour24.hobby.utils.GsonUtils" />
+
+        <import type="com.google.gson.Gson" />
+
         <variable
-            name="viewModel"
+            name="courseVM"
             type="com.hour24.hobby.viewmodel.CourseViewModel" />
+
+        <variable
+            name="bookmarkVM"
+            type="com.hour24.hobby.view.bookmark.BookmarkViewModel" />
 
     </data>
 
@@ -23,14 +31,14 @@
             android:id="@+id/cv_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{(v) -> viewModel.onClick(v, viewModel.model)}"
             android:text="댓글" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cv_bookmark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="@{(v) -> viewModel.onClick(v, viewModel.model)}"
+            android:checked="@{bookmarkVM.isBookmark(courseVM.model.id)}"
+            android:onCheckedChanged="@{(cb, isChecked) -> bookmarkVM.onCheckedChanged(cb, isChecked, courseVM.model.id, GsonUtils.INSTANCE.toJson(courseVM.model))}"
             android:text="북마크" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

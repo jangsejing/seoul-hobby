@@ -19,9 +19,9 @@ class SearchSheet : BottomSheetDialogFragment(), View.OnClickListener {
 
     private lateinit var mBinding: SearchSheetBinding
     private lateinit var mListener: OnSearchSheetListener
-    private lateinit var mMainViewModel: MainViewModel
+    private lateinit var mMainVM: MainViewModel
 
-    private val mViewModel = SearchViewModel()
+    private val mSearchVM = SearchViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +38,7 @@ class SearchSheet : BottomSheetDialogFragment(), View.OnClickListener {
     }
 
     fun setOnSearchSheetListener(viewModel: MainViewModel, listener: OnSearchSheetListener) {
-        mMainViewModel = viewModel
+        mMainVM = viewModel
         mListener = listener
     }
 
@@ -51,12 +51,12 @@ class SearchSheet : BottomSheetDialogFragment(), View.OnClickListener {
 
         mBinding.run {
 
-            mViewModel.apply {
-                setText(mMainViewModel.getText().get()!!.trim())
-                setYear(mMainViewModel.getYear().get())
-                setMonth(mMainViewModel.getMonth().get())
+            searchVM = mSearchVM.apply {
+                setText(mMainVM.getText().get()!!.trim())
+                setYear(mMainVM.getYear().get())
+                setMonth(mMainVM.getMonth().get())
             }
-            viewModel = mViewModel
+
         }
     }
 

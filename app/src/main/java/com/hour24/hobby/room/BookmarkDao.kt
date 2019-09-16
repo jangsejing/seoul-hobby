@@ -17,10 +17,14 @@ interface BookmarkDao {
     @Query("SELECT * FROM bookmark where id = :id")
     fun selectById(id: String): Observable<BookmarkEntity>
 
+
+    @Query("SELECT count(*) FROM bookmark where id = :id")
+    fun selectCountById(id: String): Observable<Int>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(entity: BookmarkEntity): Completable
 
     @Query("DELETE FROM bookmark WHERE id = :id")
-    fun deleteById(id: Int): Completable
+    fun deleteById(id: String): Completable
 
 }

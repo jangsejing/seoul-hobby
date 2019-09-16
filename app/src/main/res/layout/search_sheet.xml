@@ -7,7 +7,7 @@
     <data>
 
         <variable
-            name="viewModel"
+            name="searchVM"
             type="com.hour24.hobby.view.search.SearchViewModel" />
 
     </data>
@@ -44,7 +44,7 @@
                 android:maxLength="10"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="@{viewModel.getText()}" />
+                android:text="@{searchVM.getText()}" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
@@ -63,16 +63,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:calendarViewShown="false"
-                    bind:addAllItem="@{viewModel.getYearList()}"
-                    bind:default="@{viewModel.getYear()}" />
+                    bind:addAllItem="@{searchVM.getYearList()}"
+                    bind:default="@{searchVM.getYear()}" />
 
                 <NumberPicker
                     android:id="@+id/np_month"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:calendarViewShown="false"
-                    bind:addAllItem="@{viewModel.getMonthList()}"
-                    bind:default="@{viewModel.getMonth()}" />
+                    bind:addAllItem="@{searchVM.getMonthList()}"
+                    bind:default="@{searchVM.getMonth()}" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -26,7 +26,8 @@
 
         <activity
             android:name=".view.main.MainActivity"
-            android:theme="@style/MainTheme">
+            android:theme="@style/MainTheme"
+            android:windowSoftInputMode="adjustResize">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,7 +40,6 @@
             android:name=".view.detail.DetailActivity"
             android:launchMode="singleTop"
             android:theme="@style/DetailTheme" />
-
     </application>
 
 </manifest>

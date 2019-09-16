@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
+import androidx.lifecycle.ViewModelProviders
 import com.google.gson.Gson
 import com.hour24.hobby.R
 import com.hour24.hobby.consts.CourseConst
@@ -24,7 +25,6 @@ import timber.log.Timber
 class CourseViewModel(private val mContextProvider: ContextProvider) {
 
     private lateinit var mModel: OfflineItemModel
-//    private val mBookmarkViewModel
 
     init {
 
@@ -32,19 +32,9 @@ class CourseViewModel(private val mContextProvider: ContextProvider) {
 
     fun setModel(model: OfflineItemModel) {
         this.mModel = model
-        getBookmark()
     }
 
     fun getModel() = mModel
-
-    /**
-     * 북마크 체크
-     */
-    private fun getBookmark() {
-        tryCatch {
-
-        }
-    }
 
     fun getName(): String {
         val name = mModel.name.trim()
@@ -135,7 +125,6 @@ class CourseViewModel(private val mContextProvider: ContextProvider) {
     }
 
 
-
     fun onClick(v: View, model: OfflineItemModel) {
         when (v.id) {
             R.id.ll_main -> {
@@ -144,14 +133,6 @@ class CourseViewModel(private val mContextProvider: ContextProvider) {
                     intent.putExtra(model::class.java.name, model)
                     v.context.startActivity(intent)
                 }
-            }
-
-            R.id.cv_bookmark -> {
-
-            }
-
-            R.id.cv_comment -> {
-
             }
         }
     }
