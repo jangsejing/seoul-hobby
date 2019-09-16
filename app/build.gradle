@@ -72,6 +72,12 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
 }
 
+// firebase
+// https://firebase.google.com/docs/android/setup#available-libraries
+dependencies {
+    implementation 'com.google.firebase:firebase-database:19.1.0'
+}
+
 // android x
 // https://developer.android.com/jetpack/androidx/migrate
 dependencies {
@@ -87,6 +93,11 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifeCycle"
     implementation "androidx.lifecycle:lifecycle-viewmodel:$lifeCycle"
     implementation "androidx.lifecycle:lifecycle-runtime:$lifeCycle"
+
+    def room = '2.1.0'
+    implementation "androidx.room:room-runtime:$room"
+    implementation "androidx.room:room-rxjava2:$room"
+    kapt  "androidx.room:room-compiler:$room"
 }
 
 // squareup
@@ -111,3 +122,7 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$glide"
     annotationProcessor "com.github.bumptech.glide:compiler:$glide"
 }
+
+
+
+apply plugin: 'com.google.gms.google-services'
