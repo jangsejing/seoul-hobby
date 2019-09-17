@@ -12,53 +12,60 @@
 
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffffff"
-        android:fitsSystemWindows="true">
+        android:orientation="vertical">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="180dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#ffffff"
             android:fitsSystemWindows="true">
 
-            <net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout
-                android:id="@+id/toolbar_layout"
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                app:collapsedTitleTextAppearance="@style/DetailCollapsedTitleStyle"
-                app:contentScrim="?attr/colorPrimary"
-                app:expandedTitleMargin="15dp"
-                app:expandedTitleTextAppearance="@style/DetailExpandedTitleStyle"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:title="@{courseVM.name}">
+                android:layout_height="180dp"
+                android:fitsSystemWindows="true">
 
-                <View
+                <net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout
+                    android:id="@+id/toolbar_layout"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#ffffff"
-                    android:gravity="bottom" />
+                    android:fitsSystemWindows="true"
+                    app:collapsedTitleTextAppearance="@style/DetailCollapsedTitleStyle"
+                    app:contentScrim="?attr/colorPrimary"
+                    app:expandedTitleMargin="15dp"
+                    app:expandedTitleTextAppearance="@style/DetailExpandedTitleStyle"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:title="@{courseVM.name}">
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/tb_detail"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    app:contentInsetLeft="0dp"
-                    app:contentInsetStart="0dp"
-                    app:contentInsetStartWithNavigation="0dp"
-                    app:layout_collapseMode="pin"
-                    app:title="서울시 취미생활" />
-            </net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout>
-        </com.google.android.material.appbar.AppBarLayout>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#ffffff"
+                        android:gravity="bottom" />
 
-        <include
-            layout="@layout/detail_content"
-            app:courseVM="@{courseVM}" />
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/tb_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        app:contentInsetLeft="0dp"
+                        app:contentInsetStart="0dp"
+                        app:contentInsetStartWithNavigation="0dp"
+                        app:layout_collapseMode="pin"
+                        app:title="서울시 취미생활" />
+                </net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <include
+                layout="@layout/detail_content"
+                app:courseVM="@{courseVM}" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
+        <include layout="@layout/detail_input" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
 </layout>

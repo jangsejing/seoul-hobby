@@ -43,8 +43,8 @@
 
                     <include
                         layout="@layout/layout_course_info"
-                        app:type="@{CourseInfo.CAPACITY}"
-                        app:courseVM="@{courseVM}" />
+                        app:courseVM="@{courseVM}"
+                        app:type="@{CourseInfo.CAPACITY}" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <!-- 수강대상 -->
@@ -57,8 +57,8 @@
 
                     <include
                         layout="@layout/layout_course_info"
-                        app:type="@{CourseInfo.TARGET}"
-                        app:courseVM="@{courseVM}" />
+                        app:courseVM="@{courseVM}"
+                        app:type="@{CourseInfo.TARGET}" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <!-- 신청 URL -->
@@ -71,8 +71,8 @@
 
                     <include
                         layout="@layout/layout_course_info"
-                        app:type="@{CourseInfo.URL}"
-                        app:courseVM="@{courseVM}" />
+                        app:courseVM="@{courseVM}"
+                        app:type="@{CourseInfo.URL}" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -96,8 +96,8 @@
 
                     <include
                         layout="@layout/layout_course_date"
-                        app:type="@{DateRange.APPLY}"
-                        app:courseVM="@{courseVM}" />
+                        app:courseVM="@{courseVM}"
+                        app:type="@{DateRange.APPLY}" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <View
@@ -116,10 +116,12 @@
 
                     <include
                         layout="@layout/layout_course_date"
-                        app:type="@{DateRange.COURSE}"
-                        app:courseVM="@{courseVM}" />
+                        app:courseVM="@{courseVM}"
+                        app:type="@{DateRange.COURSE}" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <include layout="@layout/layout_division_general" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"

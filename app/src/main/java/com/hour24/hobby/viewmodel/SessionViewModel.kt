@@ -20,21 +20,6 @@ class SessionViewModel(private val mContextProvider: ContextProvider) {
     private lateinit var mGoogleSignInClient: GoogleSignInClient
 
     /**
-     * 로그인 여부
-     */
-    fun isExist() = FirebaseAuth.getInstance().currentUser != null
-
-    /**
-     * 이름
-     */
-    fun getName(): String? = FirebaseAuth.getInstance().currentUser?.displayName
-
-    /**
-     * uid
-     */
-    fun getUid(): String? = FirebaseAuth.getInstance().currentUser?.uid
-
-    /**
      * 구글 로그인 Instance 생성
      */
     fun onGoogleSigIn(activity: Activity) {

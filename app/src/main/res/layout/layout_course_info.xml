@@ -8,6 +8,8 @@
 
         <import type="android.view.View" />
 
+        <import type="com.hour24.hobby.consts.CourseConst.CourseInfo" />
+
         <variable
             name="type"
             type="com.hour24.hobby.consts.CourseConst.CourseInfo" />
@@ -23,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/selectableItemBackground"
+        android:clickable="@{type == CourseInfo.URL ? true : false}"
         android:gravity="center_vertical"
         android:onClick="@{(v) -> courseVM.onClick(v, courseVM.model, type)}"
         android:orientation="horizontal">
@@ -47,8 +50,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
             android:autoLink="web"
+            android:ellipsize="end"
             android:fontFamily="@font/notosans_regular"
             android:linksClickable="false"
+            android:maxLines="3"
             android:text="@{courseVM.getCourseInfo(type)}"
             android:textColor="#243b52"
             tools:text="1명" />

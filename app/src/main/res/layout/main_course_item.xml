@@ -146,7 +146,7 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <include layout="@layout/main_course_division_inner" />
+            <include layout="@layout/layout_division_inner" />
 
             <include
                 layout="@layout/main_course_item_social"

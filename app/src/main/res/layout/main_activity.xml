@@ -64,7 +64,7 @@
                         app:mainVM="@{mainVM}" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
-                <include layout="@layout/main_search_tag_division" />
+                <include layout="@layout/layout_division_general" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_main"
