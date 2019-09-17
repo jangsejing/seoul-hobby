@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="detailVM"
+            type="com.hour24.hobby.view.detail.DetailViewModel" />
 
     </data>
 
@@ -23,6 +26,7 @@
             android:singleLine="true" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/bt_submit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </androidx.appcompat.widget.LinearLayoutCompat>

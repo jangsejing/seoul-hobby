@@ -7,6 +7,10 @@
     <data>
 
         <variable
+            name="detailVM"
+            type="com.hour24.hobby.view.detail.DetailViewModel" />
+
+        <variable
             name="courseVM"
             type="com.hour24.hobby.viewmodel.CourseViewModel" />
 
@@ -65,7 +69,9 @@
                 app:courseVM="@{courseVM}" />
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        <include layout="@layout/detail_input" />
+        <include
+            layout="@layout/detail_input"
+            app:detailVM="@{detailVM}" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </layout>

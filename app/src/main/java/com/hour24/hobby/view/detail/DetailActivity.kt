@@ -11,6 +11,7 @@ import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.utils.tryCatch
 import com.hour24.hobby.view.activity.BaseActivity
 import com.hour24.hobby.viewmodel.CourseViewModel
+import kotlinx.android.synthetic.main.detail_input.*
 
 
 class DetailActivity : BaseActivity(), View.OnClickListener {
@@ -19,18 +20,13 @@ class DetailActivity : BaseActivity(), View.OnClickListener {
         DataBindingUtil.setContentView<DetailActivityBinding>(this, R.layout.detail_activity)
     }
 
+    private val mDetailVM = DetailViewModel(ContextProvider(this))
     private val mCourseVM = CourseViewModel(ContextProvider(this))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initIntent()
         initLayout()
-    }
-
-    override fun onClick(v: View) {
-        when (v.id) {
-
-        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -61,11 +57,18 @@ class DetailActivity : BaseActivity(), View.OnClickListener {
             courseVM = mCourseVM
         }
 
-//        val views = arrayOf(iv_home)
-//        views.forEach {
-//            it.setOnClickListener(this)
-//        }
+        val views = arrayOf(bt_submit)
+        views.forEach {
+            it.setOnClickListener(this)
+        }
     }
 
+    override fun onClick(v: View) {
+        when (v.id) {
+            R.id.bt_submit -> {
+                mDetailVM.onSubmit(mCourseVM.getModel().id, et_search.text.toString())
+            }
+        }
+    }
 
 }

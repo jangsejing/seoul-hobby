@@ -38,7 +38,8 @@
         <activity
             android:name=".view.detail.DetailActivity"
             android:launchMode="singleTop"
-            android:theme="@style/DetailTheme" />
+            android:theme="@style/DetailTheme"
+            android:windowSoftInputMode="adjustResize" />
     </application>
 
 </manifest>
