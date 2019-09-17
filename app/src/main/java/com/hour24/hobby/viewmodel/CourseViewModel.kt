@@ -4,22 +4,16 @@ import android.content.Intent
 import android.net.Uri
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
-import androidx.lifecycle.ViewModelProviders
-import com.google.gson.Gson
 import com.hour24.hobby.R
 import com.hour24.hobby.consts.CourseConst
 import com.hour24.hobby.extentions.toast
 import com.hour24.hobby.model.OfflineItemModel
 import com.hour24.hobby.provider.ContextProvider
-import com.hour24.hobby.room.AppDatabase
-import com.hour24.hobby.room.BookmarkEntity
 import com.hour24.hobby.utils.DateUtils
 import com.hour24.hobby.utils.tryCatch
-import java.util.*
 import com.hour24.hobby.view.detail.DetailActivity
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
+import java.util.*
 
 
 class CourseViewModel(private val mContextProvider: ContextProvider) {

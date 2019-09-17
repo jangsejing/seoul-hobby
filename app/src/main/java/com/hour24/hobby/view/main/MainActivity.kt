@@ -26,8 +26,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initLayout()
-
-        onGoogleSigIn()
     }
 
     override fun onClick(v: View) {
