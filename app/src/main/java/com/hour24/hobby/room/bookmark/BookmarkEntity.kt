@@ -1,4 +1,4 @@
-package com.hour24.hobby.room
+package com.hour24.hobby.room.bookmark
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "917879533880",
+    "firebase_url": "https://seoul-hobby.firebaseio.com",
+    "project_id": "seoul-hobby",
+    "storage_bucket": "seoul-hobby.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:917879533880:android:cd399a62e22f01603a11cd",
+        "android_client_info": {
+          "package_name": "com.hour24.hobby"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "917879533880-ji06slb3nim4kde82gpab03oo224c1au.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hour24.hobby",
+            "certificate_hash": "815a534e875bac2067c09a487c9d6eb42e580c3c"
+          }
+        },
+        {
+          "client_id": "917879533880-s9g83s2se2uuiorfp26saqf77qol71ur.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.hour24.hobby",
+            "certificate_hash": "ff904104c0a9e52aad7d3e53966b347d09539564"
+          }
+        },
+        {
+          "client_id": "917879533880-u4ect1s15ama5dn7v4t1plv6aqbj5n8s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSAfUob20_WdTuGzadi1XMITXrIPPUw8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "917879533880-u4ect1s15ama5dn7v4t1plv6aqbj5n8s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

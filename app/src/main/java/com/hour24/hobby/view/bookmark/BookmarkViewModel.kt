@@ -1,20 +1,15 @@
 package com.hour24.hobby.view.bookmark
 
 import android.annotation.SuppressLint
-import android.app.Application
 import androidx.databinding.ObservableBoolean
-import androidx.lifecycle.AndroidViewModel
-import com.google.gson.Gson
-import com.hour24.hobby.model.OfflineItemModel
 import com.hour24.hobby.room.AppDatabase
-import com.hour24.hobby.room.BookmarkEntity
+import com.hour24.hobby.room.bookmark.BookmarkEntity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
 import android.widget.CompoundButton
 import com.hour24.hobby.R
 import com.hour24.hobby.provider.ContextProvider
-import kotlinx.android.synthetic.main.main_course_item_social.view.*
 
 
 @SuppressLint("CheckResult")
