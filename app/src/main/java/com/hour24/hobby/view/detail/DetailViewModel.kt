@@ -2,10 +2,15 @@ package com.hour24.hobby.view.detail
 
 import androidx.databinding.ObservableField
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.hour24.hobby.consts.FirebaseConst
+import com.hour24.hobby.model.CommentModel
 import com.hour24.hobby.model.OfflineItemModel
 import com.hour24.hobby.provider.ContextProvider
 import timber.log.Timber
+import com.google.firebase.firestore.FieldValue.arrayUnion
 
 
 class DetailViewModel(private val mContextProvider: ContextProvider) {
@@ -16,7 +21,7 @@ class DetailViewModel(private val mContextProvider: ContextProvider) {
 
     }
 
-    fun getFirebase() = FirebaseDatabase.getInstance().reference
+    private fun getDb() = FirebaseFirestore.getInstance()
 
     /**
      * Firebase에 글 등록
@@ -25,9 +30,17 @@ class DetailViewModel(private val mContextProvider: ContextProvider) {
      * @param text 글
      */
     fun onSubmit(id: String, text: String) {
-        getFirebase().child(FirebaseConst.COMMENT).child(id).setValue(text)
+
+        val data = CommentModel("uid", id, text)
+
+        val map = hashMapOf<String, Any>()
+        map[FirebaseConst.ITEMS] = arrayUnion(data)
+
+        getDb().collection(FirebaseConst.COMMENT)
+            .document(id)
+            .set(map)
             .addOnSuccessListener {
-                Timber.d("Success : $id / $text")
+
             }
             .addOnFailureListener {
                 Timber.e(it)
