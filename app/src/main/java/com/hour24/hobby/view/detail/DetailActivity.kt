@@ -6,11 +6,17 @@ import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.hour24.hobby.R
 import com.hour24.hobby.databinding.DetailActivityBinding
+import com.hour24.hobby.databinding.DetailCommentItemBinding
+import com.hour24.hobby.model.CommentItem
 import com.hour24.hobby.model.OfflineItemModel
 import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.utils.tryCatch
 import com.hour24.hobby.view.activity.BaseActivity
+import com.hour24.hobby.view.detail.viewmodel.CommentViewModel
+import com.hour24.hobby.view.detail.viewmodel.DetailViewModel
 import com.hour24.hobby.viewmodel.CourseViewModel
+import com.hour24.tb.adapter.GenericRecyclerViewAdapter
+import kotlinx.android.synthetic.main.detail_content.*
 import kotlinx.android.synthetic.main.detail_input.*
 
 
@@ -20,7 +26,7 @@ class DetailActivity : BaseActivity(), View.OnClickListener {
         DataBindingUtil.setContentView<DetailActivityBinding>(this, R.layout.detail_activity)
     }
 
-    private val mDetailVM = DetailViewModel(ContextProvider(this))
+    private lateinit var mCommentVM: DetailViewModel
     private val mCourseVM = CourseViewModel(ContextProvider(this))
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,7 +36,6 @@ class DetailActivity : BaseActivity(), View.OnClickListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
         when (item.itemId) {
             android.R.id.home -> {
                 finish()
@@ -42,6 +47,10 @@ class DetailActivity : BaseActivity(), View.OnClickListener {
     private fun initIntent() {
         tryCatch {
             mCourseVM.setModel(intent.getSerializableExtra(OfflineItemModel::class.java.name) as OfflineItemModel)
+            mCommentVM = DetailViewModel(
+                ContextProvider(this),
+                mCourseVM.getModel().id
+            )
         }
     }
 
@@ -61,12 +70,27 @@ class DetailActivity : BaseActivity(), View.OnClickListener {
         views.forEach {
             it.setOnClickListener(this)
         }
+
+        rv_detail.adapter =
+            object :
+                GenericRecyclerViewAdapter<CommentItem, DetailCommentItemBinding>(R.layout.detail_comment_item) {
+                override fun onBindData(
+                    position: Int,
+                    model: CommentItem,
+                    dataBinding: DetailCommentItemBinding
+                ) {
+                    dataBinding.commentVM =
+                        CommentViewModel(ContextProvider(this@DetailActivity)).apply {
+                            setModel(model)
+                        }
+                }
+            }
     }
 
     override fun onClick(v: View) {
         when (v.id) {
             R.id.bt_submit -> {
-                mDetailVM.onSubmit(mCourseVM.getModel().id, et_search.text.toString())
+                mCommentVM.onWriteComment(et_search.text.toString())
             }
         }
     }

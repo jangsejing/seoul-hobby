@@ -8,7 +8,7 @@
 
         <variable
             name="detailVM"
-            type="com.hour24.hobby.view.detail.DetailViewModel" />
+            type="com.hour24.hobby.view.detail.viewmodel.DetailViewModel" />
 
         <variable
             name="courseVM"

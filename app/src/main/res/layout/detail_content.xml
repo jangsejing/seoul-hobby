@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -14,6 +15,10 @@
         <variable
             name="courseVM"
             type="com.hour24.hobby.viewmodel.CourseViewModel" />
+
+        <variable
+            name="detailVM"
+            type="com.hour24.hobby.view.detail.viewmodel.DetailViewModel" />
 
     </data>
 
@@ -124,9 +129,13 @@
             <include layout="@layout/layout_division_general" />
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_detail"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
+                android:layout_height="match_parent"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                bind:addAllItem="@{detailVM.getList()}"
+                bind:isClear="@{detailVM.isClear()}"
+                tools:listitem="@layout/detail_comment_item" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.core.widget.NestedScrollView>
 </layout>

@@ -133,7 +133,7 @@ class CourseViewModel(private val mContextProvider: ContextProvider) {
 
     fun onClick(v: View, model: OfflineItemModel, type: CourseConst.CourseInfo) {
         when (v.id) {
-            R.id.ll_course_info -> {
+            R.id.tv_desc -> {
 
                 if (type != CourseConst.CourseInfo.URL) {
                     return

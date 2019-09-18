@@ -25,12 +25,13 @@ fun RecyclerView.addAllItem(
 ) {
     tryCatch {
         (this.adapter as? GenericRecyclerViewAdapter<Any, *>)?.run {
-
             if (isClear) {
                 this.clear()
             }
 
-            this.addAllItem(list)
+            if (!list.isNullOrEmpty()) {
+                this.addAllItem(list)
+            }
         }
     }
 }

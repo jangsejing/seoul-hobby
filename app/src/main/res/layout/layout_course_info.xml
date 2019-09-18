@@ -21,12 +21,9 @@
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:id="@+id/ll_course_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
         android:gravity="center_vertical"
-        android:onClick="@{(v) -> courseVM.onClick(v, courseVM.model, type)}"
         android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -45,6 +42,7 @@
             tools:text="수강인원" />
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
@@ -53,6 +51,7 @@
             android:fontFamily="@font/notosans_regular"
             android:linksClickable="false"
             android:maxLines="3"
+            android:onClick="@{(v) -> courseVM.onClick(v, courseVM.model, type)}"
             android:text="@{courseVM.getCourseInfo(type)}"
             android:textColor="#243b52"
             tools:text="1명" />

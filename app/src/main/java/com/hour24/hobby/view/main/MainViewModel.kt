@@ -23,20 +23,17 @@ import com.hour24.hobby.extentions.toast
 @SuppressLint("CheckResult")
 class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewModel() {
 
-    private var mIsClear: ObservableBoolean = ObservableBoolean()
-
     private val mOfflineCourseList = ObservableField<List<OfflineItemModel>>()
+    private var mIsClear: ObservableBoolean = ObservableBoolean()
     private var mText = ObservableField<String>()
     private var mDate = ObservableField<String>() // 노출용
     private var mYear = ObservableInt()
     private var mMonth = ObservableInt()
 
     init {
-
         mText.set("")
         mYear.set(DateUtils.convertDateFormat(DateUtils.MM).toInt())
         mMonth.set(DateUtils.convertDateFormat(DateUtils.YYYY).toInt())
-
         getOfflineCourseList()
     }
 

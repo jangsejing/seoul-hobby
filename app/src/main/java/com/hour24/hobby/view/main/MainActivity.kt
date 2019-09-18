@@ -44,32 +44,32 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             mainVM = mMainVM.apply {
                 setFragmentManager(supportFragmentManager)
             }
-
-            // adapter
-            rvMain.adapter =
-                object :
-                    GenericRecyclerViewAdapter<OfflineItemModel, MainCourseItemBinding>(R.layout.main_course_item) {
-                    override fun onBindData(
-                        position: Int,
-                        model: OfflineItemModel,
-                        dataBinding: MainCourseItemBinding
-                    ) {
-
-                        dataBinding.courseVM =
-                            CourseViewModel(ContextProvider(this@MainActivity)).apply {
-                                setModel(model)
-                            }
-                        dataBinding.bookmarkVM =
-                            BookmarkViewModel(ContextProvider(this@MainActivity))
-
-                    }
-                }
         }
 
         val views = arrayOf(iv_home)
         views.forEach {
             it.setOnClickListener(this)
         }
+
+        // adapter
+        rv_main.adapter =
+            object :
+                GenericRecyclerViewAdapter<OfflineItemModel, MainCourseItemBinding>(R.layout.main_course_item) {
+                override fun onBindData(
+                    position: Int,
+                    model: OfflineItemModel,
+                    dataBinding: MainCourseItemBinding
+                ) {
+
+                    dataBinding.courseVM =
+                        CourseViewModel(ContextProvider(this@MainActivity)).apply {
+                            setModel(model)
+                        }
+                    dataBinding.bookmarkVM =
+                        BookmarkViewModel(ContextProvider(this@MainActivity))
+
+                }
+            }
     }
 
 }
