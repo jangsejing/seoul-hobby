@@ -28,6 +28,8 @@
             android:background="#ffffff"
             android:fitsSystemWindows="true">
 
+
+
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/app_bar"
                 android:layout_width="match_parent"
@@ -64,9 +66,26 @@
                 </net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout>
             </com.google.android.material.appbar.AppBarLayout>
 
-            <include
-                layout="@layout/detail_content"
-                app:courseVM="@{courseVM}" />
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <include
+                    layout="@layout/detail_content"
+                    app:courseVM="@{courseVM}"
+                    app:detailVM="@{detailVM}" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    bind:addAllItem="@{detailVM.getList()}"
+                    bind:isClear="@{detailVM.isClear()}"
+                    tools:listitem="@layout/detail_comment_item" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <include

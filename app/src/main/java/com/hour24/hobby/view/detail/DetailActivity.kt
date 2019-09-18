@@ -16,6 +16,7 @@ import com.hour24.hobby.view.detail.viewmodel.CommentViewModel
 import com.hour24.hobby.view.detail.viewmodel.DetailViewModel
 import com.hour24.hobby.viewmodel.CourseViewModel
 import com.hour24.tb.adapter.GenericRecyclerViewAdapter
+import kotlinx.android.synthetic.main.detail_activity.*
 import kotlinx.android.synthetic.main.detail_content.*
 import kotlinx.android.synthetic.main.detail_input.*
 
@@ -26,7 +27,7 @@ class DetailActivity : BaseActivity(), View.OnClickListener {
         DataBindingUtil.setContentView<DetailActivityBinding>(this, R.layout.detail_activity)
     }
 
-    private lateinit var mCommentVM: DetailViewModel
+    private lateinit var mDetailVM: DetailViewModel
     private val mCourseVM = CourseViewModel(ContextProvider(this))
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,11 +47,8 @@ class DetailActivity : BaseActivity(), View.OnClickListener {
 
     private fun initIntent() {
         tryCatch {
+            // 강좌정보
             mCourseVM.setModel(intent.getSerializableExtra(OfflineItemModel::class.java.name) as OfflineItemModel)
-            mCommentVM = DetailViewModel(
-                ContextProvider(this),
-                mCourseVM.getModel().id
-            )
         }
     }
 
@@ -64,6 +62,10 @@ class DetailActivity : BaseActivity(), View.OnClickListener {
             }
 
             courseVM = mCourseVM
+            detailVM = DetailViewModel(
+                ContextProvider(this@DetailActivity),
+                mCourseVM.getModel().id
+            )
         }
 
         val views = arrayOf(bt_submit)
@@ -90,7 +92,7 @@ class DetailActivity : BaseActivity(), View.OnClickListener {
     override fun onClick(v: View) {
         when (v.id) {
             R.id.bt_submit -> {
-                mCommentVM.onWriteComment(et_search.text.toString())
+                mBinding.detailVM?.onWriteComment(et_search.text.toString())
             }
         }
     }
