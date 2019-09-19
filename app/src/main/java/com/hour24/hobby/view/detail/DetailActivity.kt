@@ -95,7 +95,7 @@ class DetailActivity : BaseActivity(), View.OnClickListener {
     override fun onClick(v: View) {
         when (v.id) {
             R.id.bt_submit -> {
-                mBinding.detailVM?.onWriteComment()
+                mBinding.detailVM?.onSubmit()
             }
         }
     }

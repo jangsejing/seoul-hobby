@@ -1,12 +1,8 @@
 package com.hour24.hobby.view.detail.viewmodel
 
-import android.database.Observable
 import android.view.View
-import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListPopupWindow
-import android.widget.PopupMenu
-import androidx.databinding.ObservableField
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.hour24.hobby.R
@@ -56,7 +52,7 @@ class CommentViewModel(
             R.id.iv_more -> {
 
                 val menus = arrayListOf(
-                    mContextProvider.getString(R.string.comment_edit),
+//                    mContextProvider.getString(R.string.comment_edit),
                     mContextProvider.getString(R.string.comment_delete)
                 )
 
@@ -75,7 +71,7 @@ class CommentViewModel(
                     setOnItemClickListener { _, _, position, _ ->
                         when (position) {
                             0 -> {
-//                                detailVM.setTextForEdit(model.text)
+                                detailVM.setTextForEdit(model)
                             }
 
                             1 -> {
