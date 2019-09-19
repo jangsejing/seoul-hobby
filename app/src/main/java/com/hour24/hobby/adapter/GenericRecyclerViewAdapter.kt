@@ -1,8 +1,7 @@
 package com.hour24.tb.adapter
 
 
-import android.view.LayoutInflater
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView

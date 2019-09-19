@@ -1,29 +1,20 @@
 package com.hour24.hobby.model
 
-import com.google.firebase.firestore.PropertyName
-import java.io.Serializable
+import com.hour24.hobby.utils.Utils
+
 
 data class CommentModel(
-//    @PropertyName("items")
     val items: List<CommentItem>? = null
 ) {
     constructor() : this(null)
 }
 
 data class CommentItem(
-//    @PropertyName("uid")
-    val uid: String? = null,
-
-//    @PropertyName("name")
-    val name: String? = null,
-
-//    @PropertyName("id")
-    val id: String? = null, // 강좌 아이디
-
-//    @PropertyName("text")
+    val uid: String? = null, // 회원 아이디
+    val name: String? = null, // 회원 이름
+    val courseId: String? = null, // 강좌 아이디
     val text: String? = null, // 글
-
-//    @PropertyName("timeStamp")
+    val id: String = Utils.getRandomId(),
     val timeStamp: Long = System.currentTimeMillis() // 타임스탬프
 ) {
     constructor() : this(null, null, null, null)

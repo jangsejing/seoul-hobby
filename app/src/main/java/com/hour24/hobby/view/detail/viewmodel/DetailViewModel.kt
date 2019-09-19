@@ -28,7 +28,6 @@ class DetailViewModel(
         onReadComment()
     }
 
-    private fun getDb() = FirebaseFirestore.getInstance()
 
     /**
      * Firebase에 댓글 등록
@@ -50,7 +49,8 @@ class DetailViewModel(
         map[FirebaseConst.ITEMS] =
             arrayUnion(CommentItem(Session.getUid(), Session.getName(), mId, text))
 
-        getDb().collection(FirebaseConst.COMMENT)
+        FirebaseFirestore.getInstance()
+            .collection(FirebaseConst.COMMENT)
             .document(mId)
             .set(map, SetOptions.merge())
             .addOnSuccessListener {
@@ -83,7 +83,8 @@ class DetailViewModel(
 //                Timber.e(it)
 //            }
 
-        getDb().collection(FirebaseConst.COMMENT).document(mId)
+        FirebaseFirestore.getInstance()
+            .collection(FirebaseConst.COMMENT).document(mId)
             .addSnapshotListener { snapshot, e ->
                 tryCatch {
 

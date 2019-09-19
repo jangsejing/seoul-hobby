@@ -22,4 +22,7 @@
     <string name="search_month">월</string>
 
     <string name="detail_apply">신청하기</string>
+
+    <string name="comment_edit">수정</string>
+    <string name="comment_delete">삭제</string>
 </resources>
