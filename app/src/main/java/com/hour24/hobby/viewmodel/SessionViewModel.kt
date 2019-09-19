@@ -13,7 +13,6 @@ import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.utils.tryCatch
 import timber.log.Timber
 
-
 class SessionViewModel(private val mContextProvider: ContextProvider) {
 
     // google

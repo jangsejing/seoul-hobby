@@ -21,7 +21,7 @@ import timber.log.Timber
 import com.hour24.hobby.extentions.toast
 
 @SuppressLint("CheckResult")
-class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewModel() {
+class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewModel(mContextProvider) {
 
     private val mOfflineCourseList = ObservableField<List<OfflineItemModel>>()
     private var mIsClear: ObservableBoolean = ObservableBoolean()

@@ -11,15 +11,17 @@ import com.hour24.hobby.model.CommentModel
 import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.singleton.Session
 import com.hour24.hobby.utils.tryCatch
+import com.hour24.hobby.viewmodel.BaseViewModel
 import timber.log.Timber
 
 
 class DetailViewModel(
     private val mContextProvider: ContextProvider,
     private val mId: String
-) {
+) : BaseViewModel(mContextProvider) {
 
     private val mCommentList = ObservableField<List<CommentItem>>()
+    private val mText = ObservableField<String>()
     private var mIsClear: ObservableBoolean = ObservableBoolean()
 
     init {
@@ -34,11 +36,13 @@ class DetailViewModel(
      *
      * @param text 글
      */
-    fun onWriteComment(text: String) {
+    fun onWriteComment() {
 
-        if (!Session.isExist() || mId.isEmpty() || text.isEmpty()) {
+        if (!Session.isExist() || mId.isEmpty() || mText.get().isNullOrEmpty()) {
             return
         }
+
+        val text = mText.get()
 
         val map = hashMapOf<String, Any>()
         map[FirebaseConst.ITEMS] =
@@ -99,6 +103,8 @@ class DetailViewModel(
     }
 
     fun getId() = mId
+
+    fun getText() = mText
 
     fun getList() = mCommentList
 

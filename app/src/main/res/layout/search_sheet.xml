@@ -36,36 +36,30 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/notosans_medium"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="@string/search_option_title"
-                android:textColor="@color/color_black"
-                android:textSize="17sp" />
+                android:theme="@style/SearchTitleTextStyle" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@null"
-                android:fontFamily="@font/notosans_regular"
                 android:imeOptions="actionDone"
                 android:maxLength="10"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:text="@{searchVM.getText()}"
-                android:textSize="14sp" />
+                android:theme="@style/EditTextStyle" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:fontFamily="@font/notosans_medium"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
                 android:text="@string/search_option_date"
-                android:textColor="@color/color_black"
-                android:textSize="17sp" />
+                android:theme="@style/SearchTitleTextStyle" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -73,23 +67,56 @@
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <NumberPicker
-                    android:id="@+id/np_year"
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:calendarViewShown="false"
-                    android:theme="@style/NumberPickerTextStyle"
-                    bind:addAllItem="@{searchVM.getYearList()}"
-                    bind:default="@{searchVM.getYear()}" />
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                <NumberPicker
-                    android:id="@+id/np_month"
+                    <NumberPicker
+                        android:id="@+id/np_year"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:calendarViewShown="false"
+                        android:theme="@style/NumberPickerTextStyle"
+                        bind:addAllItem="@{searchVM.getYearList()}"
+                        bind:default="@{searchVM.getYear()}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:fontFamily="@font/notosans_regular"
+                        android:text="@string/search_year"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="14sp" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:calendarViewShown="false"
-                    android:theme="@style/NumberPickerTextStyle"
-                    bind:addAllItem="@{searchVM.getMonthList()}"
-                    bind:default="@{searchVM.getMonth()}" />
+                    android:layout_marginLeft="5dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <NumberPicker
+                        android:id="@+id/np_month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:calendarViewShown="false"
+                        android:theme="@style/NumberPickerTextStyle"
+                        bind:addAllItem="@{searchVM.getMonthList()}"
+                        bind:default="@{searchVM.getMonth()}" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="3dp"
+                        android:fontFamily="@font/notosans_regular"
+                        android:text="@string/search_month"
+                        android:textColor="@color/colorBlack"
+                        android:textSize="14sp" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.appcompat.widget.LinearLayoutCompat>
 

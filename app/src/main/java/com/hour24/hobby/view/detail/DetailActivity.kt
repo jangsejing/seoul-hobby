@@ -27,7 +27,6 @@ class DetailActivity : BaseActivity(), View.OnClickListener {
         DataBindingUtil.setContentView<DetailActivityBinding>(this, R.layout.detail_activity)
     }
 
-    private lateinit var mDetailVM: DetailViewModel
     private val mCourseVM = CourseViewModel(ContextProvider(this))
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -92,7 +91,7 @@ class DetailActivity : BaseActivity(), View.OnClickListener {
     override fun onClick(v: View) {
         when (v.id) {
             R.id.bt_submit -> {
-                mBinding.detailVM?.onWriteComment(et_search.text.toString())
+                mBinding.detailVM?.onWriteComment()
             }
         }
     }

@@ -1,15 +1,17 @@
 package com.hour24.hobby.provider
 
+import android.app.Activity
 import android.content.Context
 import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
 import androidx.core.content.ContextCompat
 
 class ContextProvider(private val mContext: Context) {
 
     fun getContext() = mContext
 
-    fun getString(resId: Int) = mContext.getString(resId)
+    fun getActivity() = mContext as Activity
+
+    fun getString(resId: Int) = mContext.getString(resId).toString()
 
     fun getColor(resId: Int) = ContextCompat.getColor(mContext, resId)
 

@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/notosans_demi_light"
             android:text="@{courseVM.getDateRangeTitle(type)}"
-            android:textColor="@color/color_black"
+            android:textColor="@color/colorBlack"
             tools:text="수강기간" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/notosans_light"
                 android:text="@{courseVM.getDateRange(type)}"
-                android:textColor="@color/color_black"
+                android:textColor="@color/colorBlack"
                 tools:text="2019.10.10 ~ 2019.12.10" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 

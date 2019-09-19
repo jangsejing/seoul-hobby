@@ -18,6 +18,8 @@
     <string name="search_option_title">강의명</string>
     <string name="search_option_date">신청시작일</string>
     <string name="search_text_hint">강의명</string>
+    <string name="search_year">년</string>
+    <string name="search_month">월</string>
 
     <string name="detail_apply">신청하기</string>
 </resources>
