@@ -24,7 +24,8 @@
             android:layout_margin="10dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/ic_launcher"
+            android:visibility="gone" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
@@ -35,26 +36,40 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/search_option_title" />
+                android:fontFamily="@font/notosans_medium"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/search_option_title"
+                android:textColor="@color/color_black"
+                android:textSize="17sp" />
 
             <androidx.appcompat.widget.AppCompatEditText
                 android:id="@+id/et_search"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@null"
+                android:fontFamily="@font/notosans_regular"
+                android:imeOptions="actionDone"
                 android:maxLength="10"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:text="@{searchVM.getText()}" />
+                android:text="@{searchVM.getText()}"
+                android:textSize="14sp" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/search_option_date" />
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/notosans_medium"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/search_option_date"
+                android:textColor="@color/color_black"
+                android:textSize="17sp" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -63,6 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:calendarViewShown="false"
+                    android:theme="@style/NumberPickerTextStyle"
                     bind:addAllItem="@{searchVM.getYearList()}"
                     bind:default="@{searchVM.getYear()}" />
 
@@ -71,6 +87,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:calendarViewShown="false"
+                    android:theme="@style/NumberPickerTextStyle"
                     bind:addAllItem="@{searchVM.getMonthList()}"
                     bind:default="@{searchVM.getMonth()}" />
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -88,7 +105,7 @@
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackground"
                 android:clickable="true"
-                android:fontFamily="@font/notosans_bold"
+                android:fontFamily="@font/notosans_medium"
                 android:gravity="center"
                 android:text="@string/search"
                 android:textColor="#ffffff"

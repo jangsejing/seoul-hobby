@@ -19,16 +19,14 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
         android:orientation="vertical">
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="#ffffff"
-            android:fitsSystemWindows="true">
-
-
+            android:background="#ffffff">
 
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/app_bar"
@@ -41,10 +39,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fitsSystemWindows="true"
-                    app:collapsedTitleTextAppearance="@style/DetailCollapsedTitleStyle"
+                    app:collapsedTitleTextAppearance="@style/DetailCollapsedTextStyle"
                     app:contentScrim="?attr/colorPrimary"
                     app:expandedTitleMargin="15dp"
-                    app:expandedTitleTextAppearance="@style/DetailExpandedTitleStyle"
+                    app:expandedTitleTextAppearance="@style/DetailExpandedTextStyle"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed"
                     app:title="@{courseVM.name}">
 

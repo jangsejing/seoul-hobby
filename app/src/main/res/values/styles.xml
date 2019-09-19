@@ -20,18 +20,23 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="colorControlNormal">#ffffff</item>
     </style>
 
-    <style name="DetailCollapsedTitleStyle">
+    <style name="DetailCollapsedTextStyle">
         <item name="android:textColor">#ffffff</item>
     </style>
 
-    <style name="DetailExpandedTitleStyle">
-        <item name="android:fontFamily">@font/notosans_bold</item>
+    <style name="DetailExpandedTextStyle">
+        <item name="android:fontFamily">@font/notosans_medium</item>
         <item name="android:textSize">30sp</item>
         <item name="android:maxLines">3</item>
+        <item name="android:color">@color/color_black</item>
     </style>
 
+    <style name="NumberPickerTextStyle">
+        <item name="android:color">@color/color_black</item>
+        <item name="android:fontFamily">@font/notosans_regular</item>
+        <item name="android:textSize">14sp</item>
+    </style>
 
 </resources>
