@@ -2,6 +2,7 @@ package com.hour24.hobby.view.detail.viewmodel
 
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FieldValue.arrayUnion
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
@@ -16,18 +17,19 @@ import timber.log.Timber
 
 class DetailViewModel(
     private val mContextProvider: ContextProvider,
-    private val mId: String
+    private val mCourseId: String
 ) : BaseViewModel(mContextProvider) {
 
     private val mCommentList = ObservableField<List<CommentItem>>()
     private val mText = ObservableField<String>()
     private var mIsClear: ObservableBoolean = ObservableBoolean()
+    private var mIsEdit: ObservableBoolean = ObservableBoolean()
 
     init {
         mIsClear.set(true)
+        mIsEdit.set(false)
         onReadComment()
     }
-
 
     /**
      * Firebase에 댓글 등록
@@ -39,7 +41,7 @@ class DetailViewModel(
             return
         }
 
-        if (mId.isEmpty() || mText.get().isNullOrEmpty()) {
+        if (mCourseId.isEmpty() || mText.get().isNullOrEmpty()) {
             return
         }
 
@@ -47,14 +49,15 @@ class DetailViewModel(
 
         val map = hashMapOf<String, Any>()
         map[FirebaseConst.ITEMS] =
-            arrayUnion(CommentItem(Session.getUid(), Session.getName(), mId, text))
+            arrayUnion(CommentItem(Session.getUid(), Session.getName(), mCourseId, text))
 
         FirebaseFirestore.getInstance()
             .collection(FirebaseConst.COMMENT)
-            .document(mId)
+            .document(mCourseId)
             .set(map, SetOptions.merge())
             .addOnSuccessListener {
-                Timber.d("success : $mId / $text")
+                Timber.d("success : $mCourseId / $text")
+                mText.set("")
             }
             .addOnFailureListener {
                 Timber.e(it)
@@ -66,25 +69,12 @@ class DetailViewModel(
      */
     private fun onReadComment() {
 
-        if (mId.isEmpty()) {
+        if (mCourseId.isEmpty()) {
             return
         }
 
-//        getDb().collection(FirebaseConst.COMMENT).document(mId)
-//            .get()
-//            .addOnSuccessListener {
-//                tryCatch {
-//                    val list = it.toObject(CommentModel::class.java)
-//                    Timber.d("list : ${list?.items}")
-//                    mCommentList.set(list?.items)
-//                }
-//            }
-//            .addOnFailureListener {
-//                Timber.e(it)
-//            }
-
         FirebaseFirestore.getInstance()
-            .collection(FirebaseConst.COMMENT).document(mId)
+            .collection(FirebaseConst.COMMENT).document(mCourseId)
             .addSnapshotListener { snapshot, e ->
                 tryCatch {
 
@@ -105,12 +95,36 @@ class DetailViewModel(
 
     }
 
-    fun getId() = mId
+    /**
+     * 댓글 수정
+     */
+    private fun onEditComment(model: CommentItem) {
+        val map = hashMapOf<String, Any>()
+        map[FirebaseConst.ITEMS] = FieldValue.arrayRemove(model)
+
+        FirebaseFirestore.getInstance()
+            .collection(FirebaseConst.COMMENT)
+            .document(model.courseId.toString())
+            .update(map)
+            .addOnSuccessListener {
+                Timber.d("delete : $model")
+            }
+            .addOnFailureListener {
+                Timber.e(it)
+            }
+    }
+
+    fun getCourseId() = mCourseId
 
     fun getText() = mText
 
     fun getList() = mCommentList
 
     fun isClear() = mIsClear
+
+//    fun setTextForEdit(text: String?) {
+//        mText.set(text)
+//        mIsEdit.set(true)
+//    }
 
 }

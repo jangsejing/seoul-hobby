@@ -1,10 +1,12 @@
 package com.hour24.hobby.view.detail.viewmodel
 
+import android.database.Observable
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ListPopupWindow
 import android.widget.PopupMenu
+import androidx.databinding.ObservableField
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.hour24.hobby.R
@@ -24,8 +26,6 @@ class CommentViewModel(
 
     }
 
-    private fun getDb() = FirebaseFirestore.getInstance()
-
     fun setModel(model: CommentItem) {
         this.mModel = model
     }
@@ -35,7 +35,7 @@ class CommentViewModel(
     /**
      * 댓글 삭제
      */
-    private fun delete(model: CommentItem) {
+    private fun onDeleteComment(model: CommentItem) {
         val map = hashMapOf<String, Any>()
         map[FirebaseConst.ITEMS] = FieldValue.arrayRemove(model)
 
@@ -51,7 +51,7 @@ class CommentViewModel(
             }
     }
 
-    fun onClick(v: View, model: CommentItem) {
+    fun onClick(v: View, model: CommentItem, detailVM: DetailViewModel) {
         when (v.id) {
             R.id.iv_more -> {
 
@@ -75,11 +75,11 @@ class CommentViewModel(
                     setOnItemClickListener { _, _, position, _ ->
                         when (position) {
                             0 -> {
-
+//                                detailVM.setTextForEdit(model.text)
                             }
 
                             1 -> {
-                                delete(model)
+                                onDeleteComment(model)
                             }
                         }
                         dismiss()

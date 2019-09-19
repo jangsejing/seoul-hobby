@@ -9,6 +9,10 @@
             name="commentVM"
             type="com.hour24.hobby.view.detail.viewmodel.CommentViewModel" />
 
+        <variable
+            name="detailVM"
+            type="com.hour24.hobby.view.detail.viewmodel.DetailViewModel" />
+
     </data>
 
     <RelativeLayout
@@ -47,7 +51,7 @@
             android:layout_margin="10dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:clickable="true"
-            android:onClick="@{(v) -> commentVM.onClick(v, commentVM.model)}"
+            android:onClick="@{(v) -> commentVM.onClick(v, commentVM.model, detailVM)}"
             app:srcCompat="@drawable/ic_more" />
     </RelativeLayout>
 </layout>

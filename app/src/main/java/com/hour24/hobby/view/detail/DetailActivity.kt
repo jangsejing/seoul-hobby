@@ -80,10 +80,14 @@ class DetailActivity : BaseActivity(), View.OnClickListener {
                     model: CommentItem,
                     dataBinding: DetailCommentItemBinding
                 ) {
-                    dataBinding.commentVM =
-                        CommentViewModel(ContextProvider(this@DetailActivity)).apply {
-                            setModel(model)
-                        }
+                    dataBinding.apply {
+                        commentVM =
+                            CommentViewModel(ContextProvider(this@DetailActivity)).apply {
+                                setModel(model)
+                            }
+
+                        detailVM = mBinding.detailVM
+                    }
                 }
             }
     }
