@@ -6,7 +6,7 @@ import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
 import com.hour24.hobby.R
 import com.hour24.hobby.consts.CourseConst
-import com.hour24.hobby.extentions.toast
+import com.hour24.hobby.view.extentions.toast
 import com.hour24.hobby.model.OfflineItemModel
 import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.utils.DateUtils
@@ -16,7 +16,8 @@ import timber.log.Timber
 import java.util.*
 
 
-class CourseViewModel(private val mContextProvider: ContextProvider) {
+class CourseViewModel(private val mContextProvider: ContextProvider) :
+    BaseViewModel(mContextProvider) {
 
     private lateinit var mModel: OfflineItemModel
 

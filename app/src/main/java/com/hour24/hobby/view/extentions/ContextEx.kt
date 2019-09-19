@@ -1,4 +1,4 @@
-package com.hour24.hobby.extentions
+package com.hour24.hobby.view.extentions
 
 import android.content.Context
 import android.widget.Toast

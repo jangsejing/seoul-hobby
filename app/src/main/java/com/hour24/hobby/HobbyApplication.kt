@@ -3,6 +3,7 @@ package com.hour24.hobby
 import android.app.Application
 import com.google.firebase.auth.FirebaseAuth
 import com.hour24.hobby.room.AppDatabase
+import com.hour24.hobby.viewmodel.SessionViewModel
 import timber.log.Timber
 
 class HobbyApplication : Application() {

@@ -9,11 +9,10 @@ import com.hour24.hobby.consts.FirebaseConst
 import com.hour24.hobby.model.CommentItem
 import com.hour24.hobby.model.CommentModel
 import com.hour24.hobby.provider.ContextProvider
-import com.hour24.hobby.singleton.Session
 import com.hour24.hobby.utils.tryCatch
 import com.hour24.hobby.viewmodel.BaseViewModel
+import com.hour24.hobby.viewmodel.Session
 import timber.log.Timber
-
 
 class DetailViewModel(
     private val mContextProvider: ContextProvider,
@@ -33,12 +32,15 @@ class DetailViewModel(
 
     /**
      * Firebase에 댓글 등록
-     *
-     * @param text 글
      */
     fun onWriteComment() {
 
-        if (!Session.isExist() || mId.isEmpty() || mText.get().isNullOrEmpty()) {
+        if (!Session.isExist()) {
+            getSessionVM().onGoogleSigIn()
+            return
+        }
+
+        if (mId.isEmpty() || mText.get().isNullOrEmpty()) {
             return
         }
 

@@ -13,6 +13,25 @@ import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.utils.tryCatch
 import timber.log.Timber
 
+object Session {
+
+    /**
+     * 로그인 여부
+     */
+    fun isExist() = FirebaseAuth.getInstance().currentUser != null
+
+    /**
+     * 이름
+     */
+    fun getName(): String? = FirebaseAuth.getInstance().currentUser?.displayName
+
+    /**
+     * uid
+     */
+    fun getUid(): String? = FirebaseAuth.getInstance().currentUser?.uid
+
+}
+
 class SessionViewModel(private val mContextProvider: ContextProvider) {
 
     // google
@@ -21,7 +40,7 @@ class SessionViewModel(private val mContextProvider: ContextProvider) {
     /**
      * 구글 로그인 Instance 생성
      */
-    fun onGoogleSigIn(activity: Activity) {
+    fun onGoogleSigIn() {
         tryCatch {
             // Configure Google Sign In
             val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -32,7 +51,7 @@ class SessionViewModel(private val mContextProvider: ContextProvider) {
             mGoogleSignInClient = GoogleSignIn.getClient(mContextProvider.getContext(), gso)
 
             val intent = mGoogleSignInClient.signInIntent
-            activity.startActivityForResult(intent, SignInConst.GOOGLE)
+            mContextProvider.getActivity().startActivityForResult(intent, SignInConst.GOOGLE)
         }
     }
 

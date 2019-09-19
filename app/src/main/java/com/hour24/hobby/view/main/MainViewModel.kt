@@ -18,7 +18,7 @@ import io.reactivex.Flowable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
-import com.hour24.hobby.extentions.toast
+import com.hour24.hobby.view.extentions.toast
 
 @SuppressLint("CheckResult")
 class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewModel(mContextProvider) {
