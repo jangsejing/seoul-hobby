@@ -18,7 +18,7 @@
 
         <variable
             name="bookmarkVM"
-            type="com.hour24.hobby.view.bookmark.BookmarkViewModel" />
+            type="com.hour24.hobby.view.recent.RecentViewModel" />
 
     </data>
 
@@ -146,12 +146,12 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-            <include layout="@layout/layout_division_inner" />
+<!--            <include layout="@layout/layout_division_inner" />-->
 
-            <include
-                layout="@layout/main_course_item_social"
-                app:bookmarkVM="@{bookmarkVM}"
-                app:courseVM="@{courseVM}" />
+<!--            <include-->
+<!--                layout="@layout/main_course_item_social"-->
+<!--                app:bookmarkVM="@{bookmarkVM}"-->
+<!--                app:courseVM="@{courseVM}" />-->
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 

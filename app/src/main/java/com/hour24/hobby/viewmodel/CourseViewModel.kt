@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.view.View
 import androidx.browser.customtabs.CustomTabsIntent
+import com.google.gson.Gson
 import com.hour24.hobby.R
 import com.hour24.hobby.consts.CourseConst
 import com.hour24.hobby.view.extentions.toast
@@ -12,6 +13,7 @@ import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.utils.DateUtils
 import com.hour24.hobby.utils.tryCatch
 import com.hour24.hobby.view.detail.DetailActivity
+import com.hour24.hobby.view.recent.RecentViewModel
 import timber.log.Timber
 import java.util.*
 
@@ -20,6 +22,9 @@ class CourseViewModel(private val mContextProvider: ContextProvider) :
     BaseViewModel(mContextProvider) {
 
     private lateinit var mModel: OfflineItemModel
+    private val mRecentVM: RecentViewModel by lazy {
+        RecentViewModel(mContextProvider)
+    }
 
     init {
 
@@ -124,9 +129,13 @@ class CourseViewModel(private val mContextProvider: ContextProvider) :
         when (v.id) {
             R.id.ll_main -> {
                 tryCatch {
+                    // 상세 이동
                     val intent = Intent(v.context, DetailActivity::class.java)
                     intent.putExtra(model::class.java.name, model)
                     v.context.startActivity(intent)
+
+                    // 최근 본 강의에 저장
+                    mRecentVM.insert(model.id, Gson().toJson(model))
                 }
             }
         }

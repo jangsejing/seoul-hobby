@@ -9,7 +9,7 @@ import com.hour24.hobby.databinding.MainCourseItemBinding
 import com.hour24.hobby.model.OfflineItemModel
 import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.view.activity.BaseActivity
-import com.hour24.hobby.view.bookmark.BookmarkViewModel
+import com.hour24.hobby.view.recent.RecentViewModel
 import com.hour24.hobby.viewmodel.CourseViewModel
 import com.hour24.tb.adapter.GenericRecyclerViewAdapter
 import kotlinx.android.synthetic.main.main_activity.*
@@ -66,7 +66,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                             setModel(model)
                         }
                     dataBinding.bookmarkVM =
-                        BookmarkViewModel(ContextProvider(this@MainActivity))
+                        RecentViewModel(ContextProvider(this@MainActivity))
 
                 }
             }

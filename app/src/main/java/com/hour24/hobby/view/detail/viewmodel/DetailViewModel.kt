@@ -67,7 +67,7 @@ class DetailViewModel(
         if (!mIsEdit.get()) {
             onWriteComment()
         } else {
-            onEditComment()
+//            onEditComment()
         }
     }
 

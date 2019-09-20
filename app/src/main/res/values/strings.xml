@@ -14,7 +14,7 @@
     <string name="main_empty_url">지원가능한 URL이 없습니다</string>
 
     <string name="search">검색</string>
-    <string name="search_empty">검색된 강의정보가 없습니다</string>
+    <string name="search_empty">검색된 강의가 없습니다</string>
     <string name="search_option_title">강의명</string>
     <string name="search_option_date">신청시작일</string>
     <string name="search_text_hint">강의명</string>

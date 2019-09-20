@@ -14,7 +14,7 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:background="#ffffff"
         android:orientation="vertical">
 
@@ -36,7 +36,7 @@
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:src="@mipmap/ic_launcher" />
+                app:srcCompat="@drawable/ic_home" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_search"
@@ -46,17 +46,17 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:onClick="@{(v) -> mainVM.onClick(v)}"
-                android:src="@mipmap/ic_launcher" />
+                app:srcCompat="@drawable/ic_search" />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_bookmark"
+                android:id="@+id/iv_recent"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:onClick="@{(v) -> mainVM.onClick(v)}"
-                android:src="@mipmap/ic_launcher" />
+                app:srcCompat="@drawable/ic_recent" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_my_write"
@@ -66,7 +66,8 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
                 android:onClick="@{(v) -> mainVM.onClick(v)}"
-                android:src="@mipmap/ic_launcher" />
+                android:src="@mipmap/ic_launcher"
+                android:visibility="gone" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>

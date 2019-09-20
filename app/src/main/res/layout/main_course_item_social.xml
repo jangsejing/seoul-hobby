@@ -16,7 +16,7 @@
 
         <variable
             name="bookmarkVM"
-            type="com.hour24.hobby.view.bookmark.BookmarkViewModel" />
+            type="com.hour24.hobby.view.recent.RecentViewModel" />
 
     </data>
 
@@ -24,8 +24,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        android:orientation="horizontal">
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/cv_comment"
@@ -33,12 +32,14 @@
             android:layout_height="wrap_content"
             android:text="댓글" />
 
-        <androidx.appcompat.widget.AppCompatCheckBox
-            android:id="@+id/cv_bookmark"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="@{bookmarkVM.isBookmark(courseVM.model.id)}"
-            android:onCheckedChanged="@{(cb, isChecked) -> bookmarkVM.onCheckedChanged(cb, isChecked, courseVM.model.id, GsonUtils.INSTANCE.toJson(courseVM.model))}"
-            android:text="북마크" />
+<!--        <androidx.appcompat.widget.AppCompatCheckBox-->
+<!--            android:id="@+id/cv_bookmark"-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:background="@drawable/selector_ic_bookmark"-->
+<!--            android:button="@null"-->
+<!--            android:checked="@{bookmarkVM.isBookmark(courseVM.model.id)}"-->
+<!--            android:gravity="center"-->
+<!--            android:onCheckedChanged="@{(cb, isChecked) -> bookmarkVM.onCheckedChanged(cb, isChecked, courseVM.model.id, GsonUtils.INSTANCE.toJson(courseVM.model))}" />-->
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

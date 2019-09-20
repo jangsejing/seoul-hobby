@@ -1,19 +1,20 @@
-package com.hour24.hobby.view.bookmark
+package com.hour24.hobby.view.recent
 
 import android.annotation.SuppressLint
 import androidx.databinding.ObservableBoolean
 import com.hour24.hobby.room.AppDatabase
-import com.hour24.hobby.room.bookmark.BookmarkEntity
+import com.hour24.hobby.room.recent.RecentEntity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
-import android.widget.CompoundButton
-import com.hour24.hobby.R
 import com.hour24.hobby.provider.ContextProvider
 
 
+/**
+ * 최근 본 강의
+ */
 @SuppressLint("CheckResult")
-class BookmarkViewModel(private val mContextProvider: ContextProvider) {
+class RecentViewModel(private val mContextProvider: ContextProvider) {
 
     private val mIsBookmark = ObservableBoolean()
     private var mIsBinding = false
@@ -27,16 +28,16 @@ class BookmarkViewModel(private val mContextProvider: ContextProvider) {
         return mIsBookmark
     }
 
-    /**
-     * 체크박스
-     */
-    fun onCheckedChanged(v: CompoundButton, isChecked: Boolean, id: String, data: String) {
-        when (v.id) {
-            R.id.cv_bookmark -> {
-                if (isChecked) insert(id, data) else delete(id)
-            }
-        }
-    }
+//    /**
+//     * 체크박스
+//     */
+//    fun onCheckedChanged(v: CompoundButton, isChecked: Boolean, id: String, data: String) {
+//        when (v.id) {
+//            R.id.cv_bookmark -> {
+//                if (isChecked) insert(id, data) else delete(id)
+//            }
+//        }
+//    }
 
     /**
      * Database
@@ -45,7 +46,7 @@ class BookmarkViewModel(private val mContextProvider: ContextProvider) {
 
     private fun selectById(id: String) {
         getDatabase()
-            .bookmarkDao()
+            .recentDao()
             .selectById(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -65,7 +66,7 @@ class BookmarkViewModel(private val mContextProvider: ContextProvider) {
         Timber.d(id)
 
         getDatabase()
-            .bookmarkDao()
+            .recentDao()
             .selectCountById(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -78,10 +79,10 @@ class BookmarkViewModel(private val mContextProvider: ContextProvider) {
     }
 
 
-    private fun insert(id: String, data: String) {
+    fun insert(id: String, data: String) {
         getDatabase()
-            .bookmarkDao()
-            .insert(BookmarkEntity(id, data))
+            .recentDao()
+            .insert(RecentEntity(id, data))
             .subscribeOn(Schedulers.io())
             .subscribe({
                 Timber.d(id)
@@ -92,7 +93,7 @@ class BookmarkViewModel(private val mContextProvider: ContextProvider) {
 
     private fun delete(id: String) {
         getDatabase()
-            .bookmarkDao()
+            .recentDao()
             .deleteById(id)
             .subscribeOn(Schedulers.io())
             .subscribe({

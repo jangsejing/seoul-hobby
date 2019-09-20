@@ -1,12 +1,7 @@
 package com.hour24.hobby.room.session
 
 import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.hour24.hobby.room.bookmark.BookmarkEntity
-import io.reactivex.Completable
-import io.reactivex.Flowable
 import io.reactivex.Observable
 import kr.goodchoice.abouthere.database.dao.BaseDao
 
