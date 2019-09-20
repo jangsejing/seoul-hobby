@@ -57,18 +57,6 @@
                 android:clickable="true"
                 android:onClick="@{(v) -> mainVM.onClick(v)}"
                 app:srcCompat="@drawable/ic_recent" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_my_write"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_weight="1"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:onClick="@{(v) -> mainVM.onClick(v)}"
-                android:src="@mipmap/ic_launcher"
-                android:visibility="gone" />
-
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>

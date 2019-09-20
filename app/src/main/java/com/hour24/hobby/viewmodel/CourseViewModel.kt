@@ -7,12 +7,12 @@ import androidx.browser.customtabs.CustomTabsIntent
 import com.google.gson.Gson
 import com.hour24.hobby.R
 import com.hour24.hobby.consts.CourseConst
-import com.hour24.hobby.view.extentions.toast
-import com.hour24.hobby.model.OfflineItemModel
+import com.hour24.hobby.model.CourseItem
 import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.utils.DateUtils
 import com.hour24.hobby.utils.tryCatch
 import com.hour24.hobby.view.detail.DetailActivity
+import com.hour24.hobby.view.extentions.toast
 import com.hour24.hobby.view.recent.RecentViewModel
 import timber.log.Timber
 import java.util.*
@@ -21,7 +21,7 @@ import java.util.*
 class CourseViewModel(private val mContextProvider: ContextProvider) :
     BaseViewModel(mContextProvider) {
 
-    private lateinit var mModel: OfflineItemModel
+    private lateinit var mModel: CourseItem
     private val mRecentVM: RecentViewModel by lazy {
         RecentViewModel(mContextProvider)
     }
@@ -30,7 +30,7 @@ class CourseViewModel(private val mContextProvider: ContextProvider) :
 
     }
 
-    fun setModel(model: OfflineItemModel) {
+    fun setModel(model: CourseItem) {
         this.mModel = model
     }
 
@@ -125,7 +125,7 @@ class CourseViewModel(private val mContextProvider: ContextProvider) :
     }
 
 
-    fun onClick(v: View, model: OfflineItemModel) {
+    fun onClick(v: View, model: CourseItem) {
         when (v.id) {
             R.id.ll_main -> {
                 tryCatch {
@@ -141,7 +141,7 @@ class CourseViewModel(private val mContextProvider: ContextProvider) :
         }
     }
 
-    fun onClick(v: View, model: OfflineItemModel, type: CourseConst.CourseInfo) {
+    fun onClick(v: View, model: CourseItem, type: CourseConst.CourseInfo) {
         when (v.id) {
             R.id.tv_desc -> {
 

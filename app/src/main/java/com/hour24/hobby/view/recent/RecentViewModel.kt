@@ -2,6 +2,8 @@ package com.hour24.hobby.view.recent
 
 import android.annotation.SuppressLint
 import androidx.databinding.ObservableBoolean
+import androidx.databinding.ObservableField
+import com.hour24.hobby.model.CourseItem
 import com.hour24.hobby.room.AppDatabase
 import com.hour24.hobby.room.recent.RecentEntity
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -16,68 +18,25 @@ import com.hour24.hobby.provider.ContextProvider
 @SuppressLint("CheckResult")
 class RecentViewModel(private val mContextProvider: ContextProvider) {
 
-    private val mIsBookmark = ObservableBoolean()
-    private var mIsBinding = false
-
-    init {
-        mIsBookmark.set(false)
-    }
-
-    fun isBookmark(id: String): ObservableBoolean {
-        selectCountById(id)
-        return mIsBookmark
-    }
-
-//    /**
-//     * 체크박스
-//     */
-//    fun onCheckedChanged(v: CompoundButton, isChecked: Boolean, id: String, data: String) {
-//        when (v.id) {
-//            R.id.cv_bookmark -> {
-//                if (isChecked) insert(id, data) else delete(id)
-//            }
-//        }
-//    }
+    private val mCourseList = ObservableField<List<CourseItem>>()
 
     /**
      * Database
      */
     private fun getDatabase() = AppDatabase.getInstance(mContextProvider.getContext())!!
 
-    private fun selectById(id: String) {
+    private fun select() {
         getDatabase()
             .recentDao()
-            .selectById(id)
+            .selectAll()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
-                Timber.d(id)
+
             }, {
                 Timber.e(it)
             })
     }
-
-    private fun selectCountById(id: String) {
-
-        if (mIsBinding) {
-            return
-        }
-
-        Timber.d(id)
-
-        getDatabase()
-            .recentDao()
-            .selectCountById(id)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({
-                if (it > 0) mIsBookmark.set(true) else mIsBookmark.set(false)
-                mIsBinding = true
-            }, {
-                Timber.e(it)
-            })
-    }
-
 
     fun insert(id: String, data: String) {
         getDatabase()
@@ -102,5 +61,8 @@ class RecentViewModel(private val mContextProvider: ContextProvider) {
                 Timber.e(it)
             })
     }
+
+    // 리스트
+    fun getList() = mCourseList
 
 }

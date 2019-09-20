@@ -8,7 +8,7 @@ import androidx.databinding.ObservableInt
 import com.hour24.hobby.R
 import com.hour24.hobby.consts.APIConst
 import com.hour24.hobby.consts.CourseConst
-import com.hour24.hobby.model.OfflineItemModel
+import com.hour24.hobby.model.CourseItem
 import com.hour24.hobby.network.RetrofitService
 import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.utils.DateUtils
@@ -21,9 +21,10 @@ import timber.log.Timber
 import com.hour24.hobby.view.extentions.toast
 
 @SuppressLint("CheckResult")
-class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewModel(mContextProvider) {
+class MainViewModel(private val mContextProvider: ContextProvider) :
+    BaseViewModel(mContextProvider) {
 
-    private val mOfflineCourseList = ObservableField<List<OfflineItemModel>>()
+    private val mCourseList = ObservableField<List<CourseItem>>()
     private var mIsClear: ObservableBoolean = ObservableBoolean()
     private var mText = ObservableField<String>()
     private var mDate = ObservableField<String>() // 노출용
@@ -59,8 +60,8 @@ class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewMod
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .flatMap {
-                if (it.offlineCourse != null) {
-                    Flowable.just(it.offlineCourse.row)
+                if (it.course != null) {
+                    Flowable.just(it.course.row)
                 } else {
                     mContextProvider.getContext().toast(R.string.search_empty)
                     Flowable.error {
@@ -72,7 +73,7 @@ class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewMod
                 // 초기화 여부
                 this.mIsClear.set(isClear)
 
-                mOfflineCourseList.set(it)
+                mCourseList.set(it)
                 mText.set(text)
                 mYear.set(year)
                 mMonth.set(month)
@@ -126,19 +127,11 @@ class MainViewModel(private val mContextProvider: ContextProvider) : BaseViewMod
                     }
                 }
             }
-
-            R.id.iv_bookmark -> {
-
-            }
-
-            R.id.iv_my_write -> {
-
-            }
         }
     }
 
     // 리스트
-    fun getList() = mOfflineCourseList
+    fun getList() = mCourseList
 
     // 리스트
     fun getText() = mText

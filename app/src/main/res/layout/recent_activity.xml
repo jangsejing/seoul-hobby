@@ -7,12 +7,8 @@
     <data>
 
         <variable
-            name="detailVM"
-            type="com.hour24.hobby.view.detail.viewmodel.DetailViewModel" />
-
-        <variable
-            name="courseVM"
-            type="com.hour24.hobby.viewmodel.CourseViewModel" />
+            name="recentVM"
+            type="com.hour24.hobby.view.recent.RecentViewModel" />
 
     </data>
 
@@ -44,7 +40,7 @@
                     app:expandedTitleMargin="15dp"
                     app:expandedTitleTextAppearance="@style/DetailExpandedTextStyle"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                    app:title="@{courseVM.name}">
+                    app:title="@string/recent_title">
 
                     <View
                         android:layout_width="match_parent"
@@ -60,8 +56,7 @@
                         app:contentInsetLeft="0dp"
                         app:contentInsetStart="0dp"
                         app:contentInsetStartWithNavigation="0dp"
-                        app:layout_collapseMode="pin"
-                        app:title="서울시 취미생활" />
+                        app:layout_collapseMode="pin" />
                 </net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout>
             </com.google.android.material.appbar.AppBarLayout>
 
@@ -71,25 +66,15 @@
                 android:orientation="vertical"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-                <include
-                    layout="@layout/detail_content"
-                    app:courseVM="@{courseVM}"
-                    app:detailVM="@{detailVM}" />
-
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_detail"
+                    android:id="@+id/rv_recent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    bind:addAllItem="@{detailVM.getList()}"
-                    bind:isClear="@{detailVM.isClear()}"
+                    bind:addAllItem="@{recentVM.getList()}"
                     tools:listitem="@layout/detail_comment_item" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-        <include
-            layout="@layout/detail_input"
-            app:detailVM="@{detailVM}" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </layout>

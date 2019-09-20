@@ -8,7 +8,7 @@ import com.hour24.hobby.R
 import com.hour24.hobby.databinding.DetailActivityBinding
 import com.hour24.hobby.databinding.DetailCommentItemBinding
 import com.hour24.hobby.model.CommentItem
-import com.hour24.hobby.model.OfflineItemModel
+import com.hour24.hobby.model.CourseItem
 import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.utils.tryCatch
 import com.hour24.hobby.view.activity.BaseActivity
@@ -17,7 +17,6 @@ import com.hour24.hobby.view.detail.viewmodel.DetailViewModel
 import com.hour24.hobby.viewmodel.CourseViewModel
 import com.hour24.tb.adapter.GenericRecyclerViewAdapter
 import kotlinx.android.synthetic.main.detail_activity.*
-import kotlinx.android.synthetic.main.detail_content.*
 import kotlinx.android.synthetic.main.detail_input.*
 
 
@@ -47,7 +46,7 @@ class DetailActivity : BaseActivity(), View.OnClickListener {
     private fun initIntent() {
         tryCatch {
             // 강좌정보
-            mCourseVM.setModel(intent.getSerializableExtra(OfflineItemModel::class.java.name) as OfflineItemModel)
+            mCourseVM.setModel(intent.getSerializableExtra(CourseItem::class.java.name) as CourseItem)
         }
     }
 

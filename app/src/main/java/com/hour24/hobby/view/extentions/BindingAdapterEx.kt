@@ -15,7 +15,7 @@ import com.hour24.tb.adapter.GenericRecyclerViewAdapter
 fun RecyclerView.addAllItem(
     list: List<Any>?
 ) {
-    addAllItem(list, false)
+    addAllItem(list, true)
 }
 
 @BindingAdapter("addAllItem", "isClear")

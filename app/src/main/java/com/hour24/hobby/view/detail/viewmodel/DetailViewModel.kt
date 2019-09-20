@@ -2,7 +2,6 @@ package com.hour24.hobby.view.detail.viewmodel
 
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FieldValue.arrayUnion
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
@@ -11,7 +10,6 @@ import com.hour24.hobby.model.CommentItem
 import com.hour24.hobby.model.CommentModel
 import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.utils.tryCatch
-import com.hour24.hobby.view.extentions.hideKeyboard
 import com.hour24.hobby.viewmodel.BaseViewModel
 import com.hour24.hobby.viewmodel.Session
 import timber.log.Timber

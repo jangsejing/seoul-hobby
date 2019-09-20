@@ -28,12 +28,12 @@ import java.io.Serializable
 //}
 //}
 
-data class OfflineCourseModel(
+data class CourseModel(
     @SerializedName("OfflineCourse")
-    val offlineCourse: OfflineCourse?
+    val course: Course?
 ) : Serializable
 
-data class OfflineCourse(
+data class Course(
     @SerializedName("list_total_count")
     val listTotalCount: Int,
 
@@ -41,7 +41,7 @@ data class OfflineCourse(
     val result: Result,
 
     @SerializedName("row")
-    val row: List<OfflineItemModel> = ArrayList()
+    val row: List<CourseItem> = ArrayList()
 ) : Serializable
 
 data class Result(
@@ -52,7 +52,7 @@ data class Result(
     val message: String
 ) : Serializable
 
-data class OfflineItemModel(
+data class CourseItem(
 
     @SerializedName("COURSE_ID")
     val id: String,

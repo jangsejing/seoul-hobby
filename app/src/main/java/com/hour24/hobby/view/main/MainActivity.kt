@@ -6,7 +6,7 @@ import androidx.databinding.DataBindingUtil
 import com.hour24.hobby.R
 import com.hour24.hobby.databinding.MainActivityBinding
 import com.hour24.hobby.databinding.MainCourseItemBinding
-import com.hour24.hobby.model.OfflineItemModel
+import com.hour24.hobby.model.CourseItem
 import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.view.activity.BaseActivity
 import com.hour24.hobby.view.recent.RecentViewModel
@@ -54,10 +54,10 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         // adapter
         rv_main.adapter =
             object :
-                GenericRecyclerViewAdapter<OfflineItemModel, MainCourseItemBinding>(R.layout.main_course_item) {
+                GenericRecyclerViewAdapter<CourseItem, MainCourseItemBinding>(R.layout.main_course_item) {
                 override fun onBindData(
                     position: Int,
-                    model: OfflineItemModel,
+                    model: CourseItem,
                     dataBinding: MainCourseItemBinding
                 ) {
 
@@ -65,8 +65,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                         CourseViewModel(ContextProvider(this@MainActivity)).apply {
                             setModel(model)
                         }
-                    dataBinding.bookmarkVM =
-                        RecentViewModel(ContextProvider(this@MainActivity))
 
                 }
             }

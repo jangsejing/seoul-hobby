@@ -16,10 +16,6 @@
             name="courseVM"
             type="com.hour24.hobby.viewmodel.CourseViewModel" />
 
-        <variable
-            name="bookmarkVM"
-            type="com.hour24.hobby.view.recent.RecentViewModel" />
-
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -82,8 +78,8 @@
 
                         <include
                             layout="@layout/layout_course_info"
-                            app:type="@{CourseInfo.CAPACITY}"
-                            app:courseVM="@{courseVM}" />
+                            app:courseVM="@{courseVM}"
+                            app:type="@{CourseInfo.CAPACITY}" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
                     <!-- 수강대상 -->
@@ -95,8 +91,8 @@
 
                         <include
                             layout="@layout/layout_course_info"
-                            app:type="@{CourseInfo.TARGET}"
-                            app:courseVM="@{courseVM}" />
+                            app:courseVM="@{courseVM}"
+                            app:type="@{CourseInfo.TARGET}" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -121,8 +117,8 @@
 
                     <include
                         layout="@layout/layout_course_date"
-                        app:type="@{DateRange.APPLY}"
-                        app:courseVM="@{courseVM}" />
+                        app:courseVM="@{courseVM}"
+                        app:type="@{DateRange.APPLY}" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <View
@@ -141,17 +137,10 @@
 
                     <include
                         layout="@layout/layout_course_date"
-                        app:type="@{DateRange.COURSE}"
-                        app:courseVM="@{courseVM}" />
+                        app:courseVM="@{courseVM}"
+                        app:type="@{DateRange.COURSE}" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </androidx.appcompat.widget.LinearLayoutCompat>
-
-<!--            <include layout="@layout/layout_division_inner" />-->
-
-<!--            <include-->
-<!--                layout="@layout/main_course_item_social"-->
-<!--                app:bookmarkVM="@{bookmarkVM}"-->
-<!--                app:courseVM="@{courseVM}" />-->
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
