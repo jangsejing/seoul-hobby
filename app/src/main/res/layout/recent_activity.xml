@@ -27,7 +27,7 @@
             <com.google.android.material.appbar.AppBarLayout
                 android:id="@+id/app_bar"
                 android:layout_width="match_parent"
-                android:layout_height="130dp"
+                android:layout_height="150dp"
                 android:fitsSystemWindows="true">
 
                 <net.opacapp.multilinecollapsingtoolbar.CollapsingToolbarLayout
@@ -49,7 +49,7 @@
                         android:gravity="bottom" />
 
                     <androidx.appcompat.widget.Toolbar
-                        android:id="@+id/tb_detail"
+                        android:id="@+id/tb_recent"
                         android:layout_width="match_parent"
                         android:layout_height="?attr/actionBarSize"
                         android:theme="@style/ToolbarStyle"
@@ -63,6 +63,7 @@
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#f2f2f2"
                 android:orientation="vertical"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
@@ -72,7 +73,7 @@
                     android:layout_height="match_parent"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     bind:addAllItem="@{recentVM.getList()}"
-                    tools:listitem="@layout/detail_comment_item" />
+                    tools:listitem="@layout/course_item" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
     </androidx.appcompat.widget.LinearLayoutCompat>

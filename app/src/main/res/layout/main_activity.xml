@@ -73,7 +73,7 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     bind:addAllItem="@{mainVM.getList()}"
                     bind:isClear="@{mainVM.isClear()}"
-                    tools:listitem="@layout/main_course_item" />
+                    tools:listitem="@layout/course_item" />
             </androidx.appcompat.widget.LinearLayoutCompat>
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

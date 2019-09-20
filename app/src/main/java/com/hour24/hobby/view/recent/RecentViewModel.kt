@@ -1,15 +1,17 @@
 package com.hour24.hobby.view.recent
 
 import android.annotation.SuppressLint
-import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
+import com.google.gson.Gson
 import com.hour24.hobby.model.CourseItem
+import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.room.AppDatabase
 import com.hour24.hobby.room.recent.RecentEntity
+import io.reactivex.Flowable
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
-import com.hour24.hobby.provider.ContextProvider
 
 
 /**
@@ -19,6 +21,10 @@ import com.hour24.hobby.provider.ContextProvider
 class RecentViewModel(private val mContextProvider: ContextProvider) {
 
     private val mCourseList = ObservableField<List<CourseItem>>()
+
+    init {
+        select()
+    }
 
     /**
      * Database
@@ -31,8 +37,11 @@ class RecentViewModel(private val mContextProvider: ContextProvider) {
             .selectAll()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
+            .flatMap {
+                getCourseItem(it)
+            }
             .subscribe({
-
+                mCourseList.set(it)
             }, {
                 Timber.e(it)
             })
@@ -60,6 +69,17 @@ class RecentViewModel(private val mContextProvider: ContextProvider) {
             }, {
                 Timber.e(it)
             })
+    }
+
+    @SuppressLint("CheckResult")
+    private fun getCourseItem(list: List<RecentEntity>): Flowable<List<CourseItem>> {
+        return Observable
+            .fromIterable(list)
+            .map {
+                Gson().fromJson(it.data, CourseItem::class.java)
+            }
+            .toList()
+            .toFlowable()
     }
 
     // 리스트

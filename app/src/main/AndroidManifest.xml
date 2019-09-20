@@ -38,6 +38,10 @@
             android:name=".view.detail.DetailActivity"
             android:launchMode="singleTop"
             android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".view.recent.RecentActivity"
+            android:launchMode="singleTop" />
     </application>
 
 </manifest>

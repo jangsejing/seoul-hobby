@@ -4,15 +4,14 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.databinding.DataBindingUtil
 import com.hour24.hobby.R
-import com.hour24.hobby.databinding.MainCourseItemBinding
+import com.hour24.hobby.databinding.CourseItemBinding
 import com.hour24.hobby.databinding.RecentActivityBinding
 import com.hour24.hobby.model.CourseItem
 import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.view.activity.BaseActivity
 import com.hour24.hobby.viewmodel.CourseViewModel
 import com.hour24.tb.adapter.GenericRecyclerViewAdapter
-import kotlinx.android.synthetic.main.detail_activity.*
-
+import kotlinx.android.synthetic.main.recent_activity.*
 
 class RecentActivity : BaseActivity() {
 
@@ -37,7 +36,7 @@ class RecentActivity : BaseActivity() {
     override fun initLayout() {
 
         mBinding.run {
-            setSupportActionBar(tbDetail)
+            setSupportActionBar(tb_recent)
             supportActionBar?.run {
                 setDisplayHomeAsUpEnabled(true)
                 setDisplayShowHomeEnabled(true)
@@ -46,22 +45,18 @@ class RecentActivity : BaseActivity() {
             recentVM = RecentViewModel(ContextProvider(this@RecentActivity))
         }
 
-        rv_detail.adapter =
+        rv_recent.adapter =
             object :
-                GenericRecyclerViewAdapter<CourseItem, MainCourseItemBinding>(R.layout.main_course_item) {
+                GenericRecyclerViewAdapter<CourseItem, CourseItemBinding>(R.layout.course_item) {
                 override fun onBindData(
                     position: Int,
                     model: CourseItem,
-                    dataBinding: MainCourseItemBinding
+                    dataBinding: CourseItemBinding
                 ) {
-
-//                    dataBinding.courseVM =
-//                        CourseViewModel(ContextProvider(this@RecentActivity)).apply {
-//                            setModel(model)
-//                        }
-//                    dataBinding.bookmarkVM =
-//                        RecentViewModel(ContextProvider(this@RecentActivity))
-
+                    dataBinding.courseVM =
+                        CourseViewModel(ContextProvider(this@RecentActivity)).apply {
+                            setModel(model)
+                        }
                 }
             }
     }

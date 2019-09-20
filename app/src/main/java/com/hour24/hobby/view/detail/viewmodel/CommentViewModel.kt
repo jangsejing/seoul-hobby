@@ -70,11 +70,11 @@ class CommentViewModel(
                     )
                     setOnItemClickListener { _, _, position, _ ->
                         when (position) {
-                            0 -> {
-                                detailVM.setTextForEdit(model)
-                            }
+//                            0 -> {
+//                                detailVM.setTextForEdit(model)
+//                            }
 
-                            1 -> {
+                            0 -> {
                                 onDeleteComment(model)
                             }
                         }

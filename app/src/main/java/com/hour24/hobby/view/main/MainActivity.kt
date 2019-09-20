@@ -1,15 +1,18 @@
 package com.hour24.hobby.view.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.hour24.hobby.R
+import com.hour24.hobby.consts.APIConst
+import com.hour24.hobby.databinding.CourseItemBinding
 import com.hour24.hobby.databinding.MainActivityBinding
-import com.hour24.hobby.databinding.MainCourseItemBinding
 import com.hour24.hobby.model.CourseItem
 import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.view.activity.BaseActivity
-import com.hour24.hobby.view.recent.RecentViewModel
+import com.hour24.hobby.view.recent.RecentActivity
+import com.hour24.hobby.view.search.SearchSheet
 import com.hour24.hobby.viewmodel.CourseViewModel
 import com.hour24.tb.adapter.GenericRecyclerViewAdapter
 import kotlinx.android.synthetic.main.main_activity.*
@@ -33,6 +36,35 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             R.id.iv_home -> {
                 rv_main.smoothScrollToPosition(0)
             }
+
+            // 검색
+            R.id.iv_search -> {
+                SearchSheet().apply {
+                    setOnSearchSheetListener(mBinding.mainVM!!,
+                        object : SearchSheet.OnSearchSheetListener {
+
+                            override fun onDismiss(text: String, year: Int, month: Int) {
+                                mBinding.mainVM?.getOfflineCourseList(
+                                    true,
+                                    APIConst.Default.startIndex,
+                                    APIConst.Default.endIndex,
+                                    year,
+                                    month,
+                                    text
+                                )
+                            }
+                        })
+
+                    show(
+                        supportFragmentManager, SearchSheet::class.java.name
+                    )
+                }
+            }
+
+            // 최근 본 강의
+            R.id.iv_recent -> {
+                startActivity(Intent(this, RecentActivity::class.java))
+            }
         }
     }
 
@@ -46,7 +78,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             }
         }
 
-        val views = arrayOf(iv_home)
+        val views = arrayOf(iv_home, iv_search, iv_recent)
         views.forEach {
             it.setOnClickListener(this)
         }
@@ -54,11 +86,11 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         // adapter
         rv_main.adapter =
             object :
-                GenericRecyclerViewAdapter<CourseItem, MainCourseItemBinding>(R.layout.main_course_item) {
+                GenericRecyclerViewAdapter<CourseItem, CourseItemBinding>(R.layout.course_item) {
                 override fun onBindData(
                     position: Int,
                     model: CourseItem,
-                    dataBinding: MainCourseItemBinding
+                    dataBinding: CourseItemBinding
                 ) {
 
                     dataBinding.courseVM =

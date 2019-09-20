@@ -100,8 +100,6 @@ class MainViewModel(private val mContextProvider: ContextProvider) :
 
             // 검색
             R.id.iv_search -> {
-
-                // 검색시트
                 SearchSheet().run {
 
                     setOnSearchSheetListener(this@MainViewModel,
@@ -127,6 +125,12 @@ class MainViewModel(private val mContextProvider: ContextProvider) :
                     }
                 }
             }
+
+            // 최근 본 강의
+            R.id.iv_recent -> {
+
+            }
+
         }
     }
 

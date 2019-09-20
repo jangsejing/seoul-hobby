@@ -31,8 +31,8 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_home"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
@@ -40,22 +40,20 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_search"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:onClick="@{(v) -> mainVM.onClick(v)}"
                 app:srcCompat="@drawable/ic_search" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_recent"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:clickable="true"
-                android:onClick="@{(v) -> mainVM.onClick(v)}"
                 app:srcCompat="@drawable/ic_recent" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
