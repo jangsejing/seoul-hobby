@@ -9,6 +9,7 @@ import com.hour24.hobby.R
 import com.hour24.hobby.consts.FirebaseConst
 import com.hour24.hobby.model.CommentItem
 import com.hour24.hobby.provider.ContextProvider
+import com.hour24.hobby.utils.DateUtils
 import com.hour24.hobby.view.extentions.getDP
 import timber.log.Timber
 
@@ -27,6 +28,10 @@ class CommentViewModel(
     }
 
     fun getModel() = mModel
+
+    fun getDate(): String {
+        return DateUtils.convertDateFormat(mModel.timeStamp.seconds * 1000, "yyyy.MM.dd")
+    }
 
     /**
      * 댓글 삭제

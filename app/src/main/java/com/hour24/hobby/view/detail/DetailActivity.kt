@@ -3,6 +3,7 @@ package com.hour24.hobby.view.detail
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.hour24.hobby.R
 import com.hour24.hobby.databinding.DetailActivityBinding

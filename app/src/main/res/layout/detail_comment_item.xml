@@ -15,43 +15,63 @@
 
     </data>
 
-    <RelativeLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:padding="15dp">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{commentVM.model.name}"
-                tools:text="이름" />
+                android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{commentVM.model.text}"
-                tools:text="글" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/notosans_medium"
+                    android:text="@{commentVM.model.name}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="13sp"
+                    tools:text="이름" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{String.valueOf(commentVM.model.timeStamp)}"
-                tools:text="시간" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/notosans_regular"
+                    android:text="@{commentVM.date}"
+                    android:textColor="@color/colorGray"
+                    android:textSize="12dp"
+                    tools:text="시간" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/iv_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_margin="10dp"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:clickable="true"
-            android:onClick="@{(v) -> commentVM.onClick(v, commentVM.model, detailVM)}"
-            app:srcCompat="@drawable/ic_more" />
-    </RelativeLayout>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/notosans_regular"
+                    android:text="@{commentVM.model.text}"
+                    android:textColor="@color/colorBlack"
+                    android:textSize="15sp"
+                    tools:text="글" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_more"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:onClick="@{(v) -> commentVM.onClick(v, commentVM.model, detailVM)}"
+                android:tint="@color/colorGray"
+                app:srcCompat="@drawable/ic_more" />
+        </RelativeLayout>
+
+        <include layout="@layout/layout_division_inner" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
 </layout>
