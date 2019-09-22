@@ -4,7 +4,6 @@ object APIConst {
 
     object Host {
         const val seoul = "http://openAPI.seoul.go.kr:8088/"
-        const val mindsw = "http://www.schoolmeals.site/school_meal_api/"
     }
 
     object ApiKey {
@@ -16,7 +15,7 @@ object APIConst {
     }
 
     object Default {
-        const val size = 100
+        const val size = 1000
         const val startIndex = 1
         const val endIndex = size
     }

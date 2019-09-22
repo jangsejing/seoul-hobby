@@ -3,10 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Seoul_Hobby.iml" filepath="$PROJECT_DIR$/.idea/Seoul_Hobby.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Seoul_Hobby.iml" filepath="$PROJECT_DIR$/Seoul_Hobby.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/Seoul_Hobby-app.iml" filepath="$PROJECT_DIR$/app/Seoul_Hobby-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/hobby.iml" filepath="$PROJECT_DIR$/hobby.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/workspace-Seoul_Hobby-app.iml" filepath="$PROJECT_DIR$/app/workspace-Seoul_Hobby-app.iml" />
     </modules>
   </component>
 </project>

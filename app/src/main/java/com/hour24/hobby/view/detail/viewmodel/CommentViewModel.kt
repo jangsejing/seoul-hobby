@@ -11,6 +11,7 @@ import com.hour24.hobby.model.CommentItem
 import com.hour24.hobby.provider.ContextProvider
 import com.hour24.hobby.utils.DateUtils
 import com.hour24.hobby.view.extentions.getDP
+import com.hour24.hobby.viewmodel.Session
 import timber.log.Timber
 
 class CommentViewModel(
@@ -50,6 +51,17 @@ class CommentViewModel(
             .addOnFailureListener {
                 Timber.e(it)
             }
+    }
+
+    /**
+     * 더 보기 버튼 숨김 여부
+     */
+    fun isMe(): Int {
+        return if (mModel.uid == Session.getUid()) {
+            View.VISIBLE
+        } else {
+            View.GONE
+        }
     }
 
     fun onClick(v: View, model: CommentItem, detailVM: DetailViewModel) {
