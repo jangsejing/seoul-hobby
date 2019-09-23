@@ -1,6 +1,7 @@
 <resources>
 
     <string name="app_name">서울시 취미생활</string>
+    <string name="app_back">\'뒤로\'버튼을 한번 더 누르시면 종료됩니다.</string>
 
     <string name="main_course_name_empty">강의명을 불러올 수 없습니다</string>
     <string name="main_course_info_capacity">%d명</string>

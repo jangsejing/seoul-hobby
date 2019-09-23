@@ -20,11 +20,6 @@ object RetrofitService {
         createJSONService(ISeoulService::class.java, APIConst.Host.seoul)
     }
 
-    // mindSw
-    val mindSw: IMindSwService by lazy {
-        createJSONService(IMindSwService::class.java, APIConst.Host.mindsw)
-    }
-
     /**
      * JSON 서비스
      */

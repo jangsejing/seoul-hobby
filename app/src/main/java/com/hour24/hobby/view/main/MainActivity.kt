@@ -10,6 +10,7 @@ import com.hour24.hobby.databinding.CourseItemBinding
 import com.hour24.hobby.databinding.MainActivityBinding
 import com.hour24.hobby.model.CourseItem
 import com.hour24.hobby.provider.ContextProvider
+import com.hour24.hobby.utils.BackPressCloseHandler
 import com.hour24.hobby.view.activity.BaseActivity
 import com.hour24.hobby.view.recent.RecentActivity
 import com.hour24.hobby.view.search.SearchSheet
@@ -26,10 +27,17 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     private val mMainVM: MainViewModel = MainViewModel(ContextProvider(this))
 
+    private val mBackHandler = BackPressCloseHandler(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initLayout()
     }
+
+    override fun onBackPressed() {
+        mBackHandler.onBackPressed()
+    }
+
 
     override fun onClick(v: View) {
         when (v.id) {
