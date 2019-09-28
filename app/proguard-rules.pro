@@ -19,3 +19,13 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# okhtt3
+-dontwarn okhttp3.**
+-dontnote okhttp3.**
+
+# okio
+-dontwarn okio.**
+
+# retrofit2
+-dontnote retrofit2.**
